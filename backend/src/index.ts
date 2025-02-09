@@ -1,5 +1,6 @@
 import express, { Request, Response } from 'express';
 import dotenv from 'dotenv';
+import cors from 'cors';
 import apodRoutes from './APOD/apodRoutes';
 
 
@@ -10,6 +11,7 @@ const port = process.env.PORT || 3000;
 
 // Middleware
 app.use(express.json());
+app.use(cors());
 app.use('/api', apodRoutes)
 
 // Routes

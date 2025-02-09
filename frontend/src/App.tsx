@@ -11,7 +11,7 @@ const App = (): React.JSX.Element => {
     <>
       <BrowserRouter>
         <Navbar/>
-        <main className="flex flex-col w-full items-center pb-4">
+        <main className="flex grow flex-col items-center">
           <Routes>
             <Route
               path="/"

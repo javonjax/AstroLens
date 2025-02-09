@@ -4,7 +4,7 @@ import NavbarVerticalRule from "./NavbarVerticalRule";
 
 const Navbar = () => {
   return (
-    <nav className='flex justify-between items-center max-w-7xl w-full p-4'>
+    <nav className='flex justify-between items-center max-w-7xl w-full p-4 mx-auto'>
       <NavLink to="/">
         <Logo/>
       </NavLink>
