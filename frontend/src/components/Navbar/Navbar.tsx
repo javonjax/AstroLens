@@ -1,5 +1,6 @@
 import { NavLink } from "react-router-dom";
 import Logo from "../Logo/Logo";
+import NavbarVerticalRule from "./NavbarVerticalRule";
 
 const Navbar = () => {
   return (
@@ -7,7 +8,28 @@ const Navbar = () => {
       <NavLink to="/">
         <Logo/>
       </NavLink>
-      <div>Nav buttons</div>
+      <div className="flex justify-between items-center">
+      <NavLink
+          to={'/epic'}
+          className='rounded-2xl border-white p-4 hover:text-yellow-400 mx-1 h-full'
+        >
+          EPIC
+        </NavLink>
+        <NavbarVerticalRule/>
+        <NavLink
+          to={'/apod'}
+          className='rounded-2xl border-white p-4 hover:text-yellow-400 mx-1 h-full'
+        >
+          Picture of the Day
+        </NavLink>
+        <NavbarVerticalRule/>
+        <NavLink
+          to={'/archive'}
+          className='rounded-2xl border-white p-4 hover:text-yellow-400 mx-1 h-full'
+        >
+          Archive Explorer
+        </NavLink>
+      </div>
     </nav>
   );
 };
