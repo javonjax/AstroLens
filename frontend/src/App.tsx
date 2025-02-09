@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Homepage from "./components/Homepage/Homepage";
 import Navbar from "./components/Navbar/Navbar";
 import EpicLanding from "./components/EPIC/EpicLanding";
+import ApodLanding from "./components/APOD/ApodLanding";
 
 
 const App = (): React.JSX.Element => {
@@ -22,7 +23,7 @@ const App = (): React.JSX.Element => {
             />
             <Route
               path="/apod"
-              element={<EpicLanding/>}
+              element={<ApodLanding/>}
             />
             <Route
               path="/archive"

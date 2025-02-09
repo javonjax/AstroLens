@@ -26,7 +26,7 @@ const Homepage = () => {
   return (
     <>
       <Hero />
-      <div className='flex flex-col w-full max-w-7xl'>
+      <div className='flex flex-col w-full max-w-7xl mt-4'>
         {cards.map((card, idx) => (
           <NavCard
             title={card.title}
