@@ -4,6 +4,7 @@ import Homepage from "./components/Homepage/Homepage";
 import Navbar from "./components/Navbar/Navbar";
 import EpicLanding from "./components/EPIC/EpicLanding";
 import ApodLanding from "./components/APOD/ApodLanding";
+import Footer from "./components/Footer/Footer";
 
 
 const App = (): React.JSX.Element => {
@@ -31,6 +32,7 @@ const App = (): React.JSX.Element => {
             />
           </Routes>
         </main>
+        <Footer/>
       </BrowserRouter>
     </>
   );
