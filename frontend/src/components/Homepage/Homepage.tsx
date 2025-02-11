@@ -29,6 +29,7 @@ const Homepage = () => {
       <div className='flex flex-col w-full max-w-7xl px-4'>
           {cards.map((card, idx) => (
             <NavCard
+              key={card.title}
               title={card.title}
               text={card.text}
               imgName={card.imgName}
