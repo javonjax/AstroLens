@@ -11,7 +11,7 @@ export interface NavCardProps {
 const NavCard = ({title, text, imgName, side, path} : NavCardProps): React.JSX.Element => {
   return (
     <div className={`relative h-[400px] w-[400px] ${side === 'right' ? 'self-end' : ''}`}>
-      <img src={`../public/${imgName}`} className='rounded-[50%]' />
+      <img src={`../public/${imgName}`} className='rounded-[50%]' loading='lazy'/>
       <div className={`absolute top-[50%] ${side === 'left' ? 'left-[50%]' : 'right-[50%]'} h-fit w-[400px] rounded-2xl bg-neutral-800 p-4 transform -translate-y-[50%]`}>
         <h3 className='text-yellow-300'>{title}</h3>
         <p>

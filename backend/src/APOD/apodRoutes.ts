@@ -22,6 +22,7 @@ router.get(
         api_key: NASA_API_KEY,
         ...request.query,
       }).toString();
+      
       const res: globalThis.Response = await fetch(
         `${NASA_APOD_URL}?${queryParams}`
       );

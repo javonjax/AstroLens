@@ -13,22 +13,24 @@ const DatePicker = ({
   setQueryDate,
 }: DatePickerProps): React.JSX.Element => {
   return (
-    <DatePickerInput
-      label={label || 'Pick a date'}
-      clearable
-      placeholder='Pick a date'
-      className='grow p-4 w-full max-w-[400px]'
-      allowDeselect
-      leftSection={<Calendar size={16} />}
-      leftSectionPointerEvents='none'
-      radius='md'
-      minDate={new Date(1995, 5, 16)}
-      maxDate={new Date()}
-      value={queryDate}
-      onChange={setQueryDate}
-      firstDayOfWeek={0}
-      hideOutsideDates
-    />
+    <>
+      <DatePickerInput
+        label={label || 'Pick a date'}
+        clearable
+        placeholder='Pick a date'
+        className='grow p-4 w-full max-w-[400px]'
+        allowDeselect
+        leftSection={<Calendar size={16} />}
+        leftSectionPointerEvents='none'
+        radius='md'
+        minDate={new Date(1995, 5, 16)}
+        maxDate={new Date()}
+        value={queryDate}
+        onChange={setQueryDate}
+        firstDayOfWeek={0}
+        hideOutsideDates
+      />
+    </>
   );
 };
 

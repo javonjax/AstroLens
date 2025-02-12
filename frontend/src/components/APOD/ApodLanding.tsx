@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react';
 import ApodContent from './ApodContent';
-import { useLocation } from 'react-router-dom';
 
 
 export interface Apod {
@@ -9,14 +8,13 @@ export interface Apod {
   explanation: string;
   url: string;
   hdurl: string;
+  media_type: string;
   copyright?: string;
 }
 
 const BACKEND_APOD_API_URL: string = import.meta.env.VITE_BACKEND_APOD_URL;
 
 const ApodLanding = (): React.JSX.Element => {
-  const path: string = useLocation().pathname.slice(1).toLowerCase();
-  console.log(path)
   const [apod, setApod] = useState<Apod>();
 
   const fetchAPOD = async (date: Date | null = null): Promise<void> => {
