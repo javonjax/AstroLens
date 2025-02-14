@@ -26,17 +26,17 @@ const Homepage = () => {
   return (
     <>
       <Hero />
-      <div className='flex flex-col w-full max-w-7xl px-4'>
-          {cards.map((card, idx) => (
-            <NavCard
-              key={card.title}
-              title={card.title}
-              text={card.text}
-              imgName={card.imgName}
-              side={idx % 2 === 0 ? 'left' : 'right'}
-              path={card.path}
-            />
-          ))}
+      <div className='flex w-full max-w-7xl flex-col px-4'>
+        {cards.map((card, idx) => (
+          <NavCard
+            key={card.title}
+            title={card.title}
+            text={card.text}
+            imgName={card.imgName}
+            side={idx % 2 === 0 ? 'left' : 'right'}
+            path={card.path}
+          />
+        ))}
       </div>
     </>
   );

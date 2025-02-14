@@ -5,13 +5,13 @@ dotenv.config();
 
 const router: Router = express.Router();
 const NASA_API_KEY = process.env.NASA_API_KEY;
-const NASA_APOD_URL = process.env.APOD_URL;
+const NASA_LIBRARY_URL = process.env.LIBRARY_URL;
 
 /*
-    GET the Atronomy Picture of the Day (APOD).
+    GET resources from the NASA image library.
 */
 router.get(
-  '/apod',
+  '/library',
   async (request: Request, response: Response): Promise<void> => {
     try {
       if (typeof NASA_API_KEY !== 'string') {
@@ -24,7 +24,7 @@ router.get(
       }).toString();
 
       const res: globalThis.Response = await fetch(
-        `${NASA_APOD_URL}?${queryParams}`,
+        `${NASA_LIBRARY_URL}?${queryParams}`,
       );
 
       if (!res.ok) {

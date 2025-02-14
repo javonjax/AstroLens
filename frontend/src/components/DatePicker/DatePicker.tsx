@@ -1,3 +1,4 @@
+import { Button, Stack } from '@mantine/core';
 import { DatePickerInput } from '@mantine/dates';
 import { Calendar } from 'lucide-react';
 
@@ -15,10 +16,9 @@ const DatePicker = ({
   return (
     <>
       <DatePickerInput
-        label={label || 'Pick a date'}
         clearable
         placeholder='Pick a date'
-        className='grow p-4 w-full max-w-[400px]'
+        className='w-full max-w-[400px] grow p-4 text-center'
         allowDeselect
         leftSection={<Calendar size={16} />}
         leftSectionPointerEvents='none'

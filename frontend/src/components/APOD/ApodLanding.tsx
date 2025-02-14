@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react';
 import ApodContent from './ApodContent';
 
-
 export interface Apod {
   title: string;
   date: string;
@@ -20,8 +19,8 @@ const ApodLanding = (): React.JSX.Element => {
   const fetchAPOD = async (date: Date | null = null): Promise<void> => {
     let url: string = BACKEND_APOD_API_URL;
     if (date) {
-      const queryDate: string = date.toLocaleDateString('en-CA'); 
-      url += `?date=${queryDate}`
+      const queryDate: string = date.toLocaleDateString('en-CA');
+      url += `?date=${queryDate}`;
     }
     const res: globalThis.Response = await fetch(url);
     const apodData: Apod = await res.json();
@@ -34,7 +33,7 @@ const ApodLanding = (): React.JSX.Element => {
 
   return (
     <div className='h-full w-full max-w-7xl px-4'>
-      {apod && <ApodContent apod={apod} fetchAPOD={fetchAPOD}/>}
+      {apod && <ApodContent apod={apod} fetchAPOD={fetchAPOD} />}
     </div>
   );
 };

@@ -1,5 +1,5 @@
 const NavbarVerticalRule = () => {
-  return <div className='border-1 border-white h-[24px]'></div>;
+  return <div className='border-1 h-[24px] border-white'></div>;
 };
 
 export default NavbarVerticalRule;

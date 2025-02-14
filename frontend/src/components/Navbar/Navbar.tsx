@@ -1,33 +1,33 @@
-import { NavLink } from "react-router-dom";
-import Logo from "../Logo/Logo";
-import NavbarVerticalRule from "./NavbarVerticalRule";
+import { NavLink } from 'react-router-dom';
+import Logo from '../Logo/Logo';
+import NavbarVerticalRule from './NavbarVerticalRule';
 
 const Navbar = () => {
   return (
-    <nav className='flex justify-between items-center max-w-7xl w-full p-4 mx-auto'>
-      <NavLink to="/">
-        <Logo/>
+    <nav className='mx-auto flex w-full max-w-7xl items-center justify-between p-4'>
+      <NavLink to='/'>
+        <Logo />
       </NavLink>
-      <div className="flex justify-between items-center">
-      <NavLink
-          to={'/epic'}
-          className='rounded-2xl border-white p-4 hover:text-yellow-400 mx-1 h-full'
-        >
-          EPIC
-        </NavLink>
-        <NavbarVerticalRule/>
+      <div className='flex items-center justify-between'>
         <NavLink
           to={'/apod'}
-          className='rounded-2xl border-white p-4 hover:text-yellow-400 mx-1 h-full'
+          className='mx-1 h-full rounded-2xl border-white p-4 hover:text-yellow-400'
         >
           Picture of the Day
         </NavLink>
-        <NavbarVerticalRule/>
+        <NavbarVerticalRule />
         <NavLink
-          to={'/archive'}
-          className='rounded-2xl border-white p-4 hover:text-yellow-400 mx-1 h-full'
+          to={'/library'}
+          className='mx-1 h-full rounded-2xl border-white p-4 hover:text-yellow-400'
         >
-          Archive Explorer
+          Image and Video Library
+        </NavLink>
+        <NavbarVerticalRule />
+        <NavLink
+          to={'/epic'}
+          className='mx-1 h-full rounded-2xl border-white p-4 hover:text-yellow-400'
+        >
+          EPIC
         </NavLink>
       </div>
     </nav>

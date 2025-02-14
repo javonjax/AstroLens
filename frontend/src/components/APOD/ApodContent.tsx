@@ -20,17 +20,31 @@ const ApodContent = ({
       month: 'long',
       day: 'numeric',
       year: 'numeric',
-    }
+    },
   );
 
   return (
     <>
-      <div className='flex flex-col items-center w-full max-w-7xl text-center'>
-        <h1 className='text-5xl m-4'>Atronomy Picture of the Day</h1>
-        <h1 className='text-5xl m-4'>{formattedDate}</h1>
+      <div className='flex w-full max-w-7xl items-end justify-center'>
+        <DatePicker
+          label='Find an APOD'
+          queryDate={queryDate}
+          setQueryDate={setQueryDate}
+        />
+        <button
+          type='button'
+          className='mb-4 mt-4 flex h-[36px] cursor-pointer items-center rounded-xl bg-yellow-300 p-4 text-black hover:bg-yellow-200'
+          onClick={() => fetchAPOD(queryDate)}
+        >
+          <Search size={16} />
+        </button>
+      </div>
+      <div className='flex w-full max-w-7xl flex-col items-center text-center'>
+        <h1 className='m-4 text-5xl'>Atronomy Picture of the Day</h1>
+        <h1 className='m-4 text-5xl'>{formattedDate}</h1>
         {media_type === 'image' && (
           <a className='max-h-[600px] max-w-full' target='_blank' href={hdurl}>
-            <img src={url} className='w-full h-full object-fill'></img>
+            <img src={url} className='h-full w-full object-fill'></img>
           </a>
         )}
         {media_type === 'video' && (
@@ -41,25 +55,11 @@ const ApodContent = ({
             allowFullScreen={true}
           />
         )}
-        <h2 className='text-3xl mt-2'>{title}</h2>
+        <h2 className='mt-2 text-3xl'>{title}</h2>
         <h2 className='text-xl'>
           {copyright ? `Image Credit: ${copyright}` : ''}
         </h2>
         <p className='my-2'>{explanation}</p>
-      </div>
-      <div className='flex items-end justify-center w-full max-w-7xl'>
-        <DatePicker
-          label='Find an APOD'
-          queryDate={queryDate}
-          setQueryDate={setQueryDate}
-        />
-        <button
-          type='button'
-          className='bg-yellow-300 hover:bg-yellow-200 p-4 mb-4 cursor-pointer text-black rounded-xl mt-4 h-[36px] flex items-center'
-          onClick={() => fetchAPOD(queryDate)}
-        >
-          <Search size={16} />
-        </button>
       </div>
     </>
   );
