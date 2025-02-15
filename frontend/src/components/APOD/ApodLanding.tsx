@@ -32,7 +32,7 @@ const ApodLanding = (): React.JSX.Element => {
   }, []);
 
   return (
-    <div className='h-full w-full max-w-7xl px-4'>
+    <div className='flex h-full w-full flex-col items-center'>
       {apod && <ApodContent apod={apod} fetchAPOD={fetchAPOD} />}
     </div>
   );

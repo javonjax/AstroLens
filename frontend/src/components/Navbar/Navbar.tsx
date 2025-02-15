@@ -20,7 +20,7 @@ const Navbar = () => {
           to={'/library'}
           className='mx-1 h-full rounded-2xl border-white p-4 hover:text-yellow-400'
         >
-          Image and Video Library
+          Multimedia Library
         </NavLink>
         <NavbarVerticalRule />
         <NavLink

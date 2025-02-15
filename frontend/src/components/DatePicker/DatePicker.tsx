@@ -18,7 +18,7 @@ const DatePicker = ({
       <DatePickerInput
         clearable
         placeholder='Pick a date'
-        className='w-full max-w-[400px] grow p-4 text-center'
+        className='my-4 w-full max-w-[400px] grow text-center'
         allowDeselect
         leftSection={<Calendar size={16} />}
         leftSectionPointerEvents='none'

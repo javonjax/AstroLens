@@ -1,9 +1,9 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-
 import Homepage from './components/Homepage/Homepage';
 import Navbar from './components/Navbar/Navbar';
 import EpicLanding from './components/EPIC/EpicLanding';
 import ApodLanding from './components/APOD/ApodLanding';
+import LibraryLanding from './components/ImageAndVideoLibrary/LibraryLanding';
 import Footer from './components/Footer/Footer';
 import { MantineProvider } from '@mantine/core';
 import '@mantine/core/styles.css';
@@ -21,7 +21,7 @@ const App = (): React.JSX.Element => {
               <Route path='/' element={<Homepage />} />
               <Route path='/epic' element={<EpicLanding />} />
               <Route path='/apod' element={<ApodLanding />} />
-              <Route path='/library' element={<EpicLanding />} />
+              <Route path='/library' element={<LibraryLanding />} />
             </Routes>
           </main>
           <Footer />
