@@ -1,3 +1,4 @@
+import { motion } from 'framer-motion';
 import { NavLink } from 'react-router-dom';
 
 export interface NavCardProps {
@@ -16,7 +17,11 @@ const NavCard = ({
   path,
 }: NavCardProps): React.JSX.Element => {
   return (
-    <div
+    <motion.div
+      variants={{
+        hidden: { opacity: 0 },
+        visiblee: { opacity: 1 },
+      }}
       className={`relative h-[400px] w-[400px] ${side === 'right' ? 'self-end' : ''}`}
     >
       <img src={`../${imgName}`} className='rounded-[50%]' loading='lazy' />
@@ -29,7 +34,7 @@ const NavCard = ({
           <NavLink to={`/${path}`}>Check it out</NavLink>
         </button>
       </div>
-    </div>
+    </motion.div>
   );
 };
 

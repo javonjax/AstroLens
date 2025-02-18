@@ -25,7 +25,7 @@ const Navbar = () => {
         <NavbarVerticalRule />
         <NavLink
           to={'/epic'}
-          className='mx-1 h-full rounded-2xl border-white p-4 hover:text-yellow-400'
+          className='mx-1 ml-4 h-full rounded-2xl border-white hover:text-yellow-400'
         >
           EPIC
         </NavLink>

@@ -58,7 +58,12 @@ router.get(
       const responseData = await res.json();
       const multimediaData: LibraryResponseData[] =
         responseData?.collection?.items;
-      response.status(200).json(multimediaData);
+
+      const requiredKeys: string[] = ['data', 'href', 'links'];
+      const validObjects: LibraryResponseData[] = multimediaData.filter(
+        (item) => requiredKeys.every((key) => key in item),
+      );
+      response.status(200).json(validObjects);
     } catch (error) {
       if (error instanceof Error) {
         response.status(500).json({ message: error.message });

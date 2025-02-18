@@ -3,32 +3,31 @@ import SearchButton from './SearchButton';
 import clsx from 'clsx';
 
 export interface SearchBarProps {
-  searchValue: string;
-  setSearchValue: React.Dispatch<React.SetStateAction<string>>;
+  value: string;
+  setValue: React.Dispatch<React.SetStateAction<string>>;
   onSearch: React.FormEventHandler<HTMLFormElement>;
   inputClassname?: string;
   buttonClassname?: string;
+  disabled?: boolean;
 }
 
 const SearchBar = ({
-  searchValue,
-  setSearchValue,
+  value,
+  setValue,
   onSearch,
   inputClassname,
   buttonClassname,
+  disabled,
 }: SearchBarProps) => {
   return (
     <form className='m-4 flex items-center' onSubmit={onSearch}>
       <Input
         className={clsx(`mr-4 w-[400px]`, inputClassname)}
         placeholder='Search for... (e.g. "Black hole")'
-        value={searchValue}
-        onChange={(e) => setSearchValue(e.currentTarget.value)}
+        value={value}
+        onChange={(e) => setValue(e.currentTarget.value)}
       />
-      <SearchButton
-        disabled={searchValue ? false : true}
-        buttonClassname={buttonClassname}
-      />
+      <SearchButton disabled={disabled} classname={buttonClassname} />
     </form>
   );
 };

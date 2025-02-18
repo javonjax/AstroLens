@@ -33,10 +33,7 @@ const ApodContent = ({
             queryDate={queryDate}
             setQueryDate={setQueryDate}
           />
-          <SearchButton
-            buttonClassname='ml-4'
-            onClick={() => fetchAPOD(queryDate)}
-          />
+          <SearchButton classname='ml-4' onClick={() => fetchAPOD(queryDate)} />
         </div>
         <div className='flex w-full max-w-7xl flex-col items-center text-center'>
           <h1 className='m-4 text-5xl'>Atronomy Picture of the Day</h1>
