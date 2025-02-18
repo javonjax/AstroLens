@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import LibrarySearch, { MediaType } from './LibrarySearch';
-import { LibraryResponseData } from '../../../../backend/src/libraryRoutes/libraryRoutes.ts';
+import { LibraryResponseData } from '@backend/libraryRoutes/libraryRoutes.ts';
 import LibraryContent from './LibraryContent.tsx';
 import { useSearchParams } from 'react-router-dom';
 

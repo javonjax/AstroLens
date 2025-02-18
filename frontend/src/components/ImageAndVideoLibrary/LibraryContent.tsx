@@ -1,4 +1,4 @@
-import { LibraryResponseData } from '../../../../backend/src/libraryRoutes/libraryRoutes';
+import { LibraryResponseData } from '@backend/libraryRoutes/libraryRoutes';
 
 export interface LibraryContentProps {
   content?: LibraryResponseData[];
