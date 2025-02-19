@@ -10,6 +10,10 @@ const BACKEND_LIB_URL = import.meta.env.VITE_BACKEND_LIBRARY_URL;
 const LibraryLanding = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const [inputValue, setInputValue] = useState<string>('');
+  const [yearRange, setYearRange] = useState<[number, number]>([
+    1920,
+    new Date().getFullYear(),
+  ]);
   const [searchResults, setSearchResults] = useState<
     LibraryResponseData[] | undefined
   >();
@@ -53,6 +57,8 @@ const LibraryLanding = () => {
     setSearchParams((prev) => {
       prev.set('q', inputValue);
       prev.set('media_type', mediaTypes);
+      prev.set('year_start', String(yearRange[0]));
+      prev.set('year_end', String(yearRange[1]));
       return prev;
     });
   };
@@ -68,6 +74,8 @@ const LibraryLanding = () => {
     setSearchParams((prev) => {
       prev.set('q', searchTerm);
       prev.set('media_type', mediaTypes);
+      prev.set('year_start', String(yearRange[0]));
+      prev.set('year_end', String(yearRange[1]));
       return prev;
     });
   };
@@ -77,11 +85,14 @@ const LibraryLanding = () => {
       <LibrarySearch
         inputValue={inputValue}
         setInputValue={setInputValue}
+        yearRange={yearRange}
+        setYearRange={setYearRange}
         onSearch={onSearch}
         queryMediaTypes={queryMediaTypes}
         handleCheck={handleCheck}
       />
       <LibraryContent
+        searchParam={searchParams.get('q')}
         content={searchResults}
         onClickSuggestedTerm={onClickSuggestedTerm}
       />

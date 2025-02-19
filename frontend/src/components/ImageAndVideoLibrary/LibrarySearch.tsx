@@ -1,9 +1,11 @@
-import { Checkbox } from '@mantine/core';
+import { Checkbox, RangeSlider } from '@mantine/core';
 import SearchBar from '../UI/SearchBar';
 
 export interface LibrarySearchProps {
   inputValue: string;
   setInputValue: React.Dispatch<React.SetStateAction<string>>;
+  yearRange: [number, number];
+  setYearRange: React.Dispatch<React.SetStateAction<[number, number]>>;
   onSearch: React.FormEventHandler<HTMLFormElement>;
   queryMediaTypes: Record<MediaType, boolean>;
   handleCheck: (mediaType: MediaType) => void;
@@ -14,13 +16,19 @@ const mediaTypes: MediaType[] = ['image', 'video', 'audio'];
 const LibrarySearch = ({
   inputValue,
   setInputValue,
+  yearRange,
+  setYearRange,
   onSearch,
   queryMediaTypes,
   handleCheck,
 }: LibrarySearchProps) => {
+  const currentYear: number = new Date().getFullYear();
+
   return (
-    <div className='flex w-fit flex-col items-center justify-center'>
-      <h1 className='m-4 text-5xl'>Explore the NASA multimedia library.</h1>
+    <div className='m-2 flex w-fit flex-col items-center justify-center'>
+      <h1 className='m-2 text-center text-5xl'>
+        Explore the NASA multimedia library.
+      </h1>
       <SearchBar
         value={inputValue}
         setValue={setInputValue}
@@ -50,6 +58,21 @@ const LibrarySearch = ({
             onChange={() => handleCheck(type)}
           />
         ))}
+      </div>
+      <div className='mt-4 w-[400px]'>
+        <RangeSlider
+          value={yearRange}
+          onChange={setYearRange}
+          min={1920}
+          max={currentYear}
+          marks={[
+            { value: 1920, label: '1920' },
+            {
+              value: currentYear,
+              label: `${currentYear}`,
+            },
+          ]}
+        ></RangeSlider>
       </div>
     </div>
   );

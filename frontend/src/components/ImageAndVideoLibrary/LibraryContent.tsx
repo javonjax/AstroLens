@@ -1,6 +1,7 @@
 import { LibraryResponseData } from '@backend/libraryRoutes/libraryRoutes';
 
 export interface LibraryContentProps {
+  searchParam?: string | null;
   content?: LibraryResponseData[];
   onClickSuggestedTerm: (searchTerm: string) => Promise<void>;
 }
@@ -24,31 +25,52 @@ const suggestedSearchTerms = popularSearchTerms
   .slice(0, 3);
 
 const LibraryContent = ({
+  searchParam,
   content,
   onClickSuggestedTerm,
 }: LibraryContentProps) => {
   return (
     <div className='flex h-full w-full max-w-7xl flex-col items-center'>
-      {content === undefined && (
-        <div className='m-4 flex flex-col items-center'>
-          Try these popular search terms.
-          <div className='flex items-center'>
-            {suggestedSearchTerms.map((searchTerm) => {
-              return (
-                <button
-                  className='m-4 cursor-pointer text-yellow-400 underline'
-                  onClick={() => onClickSuggestedTerm(searchTerm)}
-                >
-                  {searchTerm}
-                </button>
-              );
-            })}
+      <div className='m-2 flex flex-col items-center'>
+        {content === undefined && (
+          <div className='flex flex-col items-center'>
+            Try these popular search terms.
+            <div className='flex items-center'>
+              {suggestedSearchTerms.map((searchTerm) => {
+                return (
+                  <button
+                    className='m-2 cursor-pointer text-yellow-400 underline'
+                    onClick={() => onClickSuggestedTerm(searchTerm)}
+                  >
+                    {searchTerm}
+                  </button>
+                );
+              })}
+            </div>
           </div>
-        </div>
-      )}
-      {content && !content.length && <div>ge</div>}
-
-      <div className='m-4 grid h-full w-full grid-cols-[repeat(auto-fit,minmax(350px,30%))] justify-center gap-x-8 gap-y-16 border-2 border-white'>
+        )}
+        {content && !content.length && (
+          <>
+            <div>No results found for "{searchParam}".</div>
+            <div className='m-2 flex flex-col items-center'>
+              Try these popular search terms.
+              <div className='flex items-center'>
+                {suggestedSearchTerms.map((searchTerm) => {
+                  return (
+                    <button
+                      className='m-2 cursor-pointer text-yellow-400 underline'
+                      onClick={() => onClickSuggestedTerm(searchTerm)}
+                    >
+                      {searchTerm}
+                    </button>
+                  );
+                })}
+              </div>
+            </div>
+          </>
+        )}
+      </div>
+      <div className='m-4 grid h-full w-full grid-cols-[repeat(auto-fit,minmax(350px,30%))] justify-center gap-x-8 gap-y-16'>
         {content?.map((item) => {
           return (
             <div key={item.data[0].nasa_id} className='h-full max-h-[300px]'>

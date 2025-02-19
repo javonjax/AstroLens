@@ -1,8 +1,9 @@
 import { Search } from 'lucide-react';
 import DatePicker from '../DatePicker/DatePicker';
 import { Apod } from './ApodLanding';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import SearchButton from '../UI/SearchButton';
+import { Skeleton } from '@mantine/core';
 
 export interface ApodContentProps {
   apod: Apod;
@@ -23,6 +24,10 @@ const ApodContent = ({
       year: 'numeric',
     },
   );
+
+  useEffect(() => {
+    console.log('new apod');
+  }, [title]);
 
   return (
     <>

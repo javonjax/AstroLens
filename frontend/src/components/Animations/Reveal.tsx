@@ -9,7 +9,7 @@ export interface RevealProps {
 const Reveal = ({ children, side }: RevealProps): React.JSX.Element => {
   const revealRef = useRef(null);
   const isInView: boolean = useInView(revealRef, {
-    amount: 0.6,
+    amount: 0.75,
     once: true,
     margin: '0px',
   });
