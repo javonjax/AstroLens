@@ -1,6 +1,11 @@
 import { NavLink } from 'react-router-dom';
 import Logo from '../Logo/Logo';
 import NavbarVerticalRule from './NavbarVerticalRule';
+import NavBarItem from './NavBarItem';
+import { Menu } from '@mantine/core';
+import { Camera, Earth, Library, Menu as MenuButton } from 'lucide-react';
+import HamburgerMenuItem from './HamburgerMenuItem';
+import HamburgerMenuTarget from './HamburgerMenuTarget';
 
 const Navbar = () => {
   return (
@@ -8,27 +13,40 @@ const Navbar = () => {
       <NavLink to='/'>
         <Logo />
       </NavLink>
-      <div className='flex items-center justify-between'>
-        <NavLink
-          to={'/apod'}
-          className='mx-1 h-full rounded-2xl border-white p-4 hover:text-yellow-400'
-        >
-          Picture of the Day
-        </NavLink>
+      {/* Normal navbar for larger screens. */}
+      <div className='hidden items-center justify-between md:flex'>
+        <NavBarItem link='/apod' text='Picture of the Day' />
         <NavbarVerticalRule />
-        <NavLink
-          to={'/library'}
-          className='mx-1 h-full rounded-2xl border-white p-4 hover:text-yellow-400'
-        >
-          Multimedia Library
-        </NavLink>
+        <NavBarItem link='/library' text='Multimedia Library' />
         <NavbarVerticalRule />
-        <NavLink
-          to={'/epic'}
-          className='mx-1 ml-4 h-full rounded-2xl border-white hover:text-yellow-400'
-        >
-          EPIC
-        </NavLink>
+        <NavBarItem link='/epic' text='EPIC' />
+      </div>
+      {/* Hamburger menu for smaller screens. */}
+      <div className='md:hidden'>
+        <Menu width={200}>
+          <Menu.Target>
+            <HamburgerMenuTarget children={undefined} />
+          </Menu.Target>
+          <Menu.Dropdown
+            styles={{ dropdown: { backgroundColor: 'rgb(64, 64, 64)' } }}
+          >
+            <HamburgerMenuItem
+              to='/apod'
+              text='Picture of the Day'
+              icon={<Camera size={16} />}
+            />
+            <HamburgerMenuItem
+              to='/library'
+              text='Multimedia Library'
+              icon={<Library size={16} />}
+            />
+            <HamburgerMenuItem
+              to='/epic'
+              text='EPIC'
+              icon={<Earth size={16} />}
+            />
+          </Menu.Dropdown>
+        </Menu>
       </div>
     </nav>
   );
