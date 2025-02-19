@@ -47,32 +47,20 @@ const LibraryLanding = () => {
     }));
   };
 
-  const onSearch = async (e: React.FormEvent) => {
+  const onSearch = async (e: React.FormEvent, searchTerm?: string) => {
     e.preventDefault();
-    // Set search params here. When they update, the useEffect is triggered to fetch data.
     const mediaTypes: string = Object.keys(queryMediaTypes)
       .filter((key) => queryMediaTypes[key as MediaType])
       .join(',');
 
-    setSearchParams((prev) => {
-      prev.set('q', inputValue);
-      prev.set('media_type', mediaTypes);
-      prev.set('year_start', String(yearRange[0]));
-      prev.set('year_end', String(yearRange[1]));
-      return prev;
-    });
-  };
+    // Fill in the search bar if a suggested term button is used for searching.
+    if (searchTerm) {
+      setInputValue(searchTerm);
+    }
 
-  const onClickSuggestedTerm = async (searchTerm: string) => {
-    // Set search params here. When they update, the useEffect is triggered to fetch data.
-    const mediaTypes: string = Object.keys(queryMediaTypes)
-      .filter((key) => queryMediaTypes[key as MediaType])
-      .join(',');
-
-    // Search bar input is set as a reminder of what suggeted term was selected.
-    setInputValue(searchTerm);
+    //When search params update, the useEffect is triggered to fetch data.
     setSearchParams((prev) => {
-      prev.set('q', searchTerm);
+      prev.set('q', searchTerm ? searchTerm : inputValue);
       prev.set('media_type', mediaTypes);
       prev.set('year_start', String(yearRange[0]));
       prev.set('year_end', String(yearRange[1]));
@@ -94,7 +82,7 @@ const LibraryLanding = () => {
       <LibraryContent
         searchParam={searchParams.get('q')}
         content={searchResults}
-        onClickSuggestedTerm={onClickSuggestedTerm}
+        onClickSuggestedTerm={onSearch}
       />
     </div>
   );

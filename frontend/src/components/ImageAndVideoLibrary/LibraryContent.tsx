@@ -3,7 +3,10 @@ import { LibraryResponseData } from '@backend/libraryRoutes/libraryRoutes';
 export interface LibraryContentProps {
   searchParam?: string | null;
   content?: LibraryResponseData[];
-  onClickSuggestedTerm: (searchTerm: string) => Promise<void>;
+  onClickSuggestedTerm: (
+    e: React.FormEvent,
+    searchTerm?: string,
+  ) => Promise<void>;
 }
 
 //
@@ -40,7 +43,7 @@ const LibraryContent = ({
                 return (
                   <button
                     className='m-2 cursor-pointer text-yellow-400 underline'
-                    onClick={() => onClickSuggestedTerm(searchTerm)}
+                    onClick={(e) => onClickSuggestedTerm(e, searchTerm)}
                   >
                     {searchTerm}
                   </button>
@@ -59,7 +62,7 @@ const LibraryContent = ({
                   return (
                     <button
                       className='m-2 cursor-pointer text-yellow-400 underline'
-                      onClick={() => onClickSuggestedTerm(searchTerm)}
+                      onClick={(e) => onClickSuggestedTerm(e, searchTerm)}
                     >
                       {searchTerm}
                     </button>
