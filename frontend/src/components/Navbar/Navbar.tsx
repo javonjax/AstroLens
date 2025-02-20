@@ -6,8 +6,22 @@ import { Menu } from '@mantine/core';
 import { Camera, Earth, Library, Menu as MenuButton } from 'lucide-react';
 import HamburgerMenuItem from './HamburgerMenuItem';
 import HamburgerMenuTarget from './HamburgerMenuTarget';
+import { useEffect, useState } from 'react';
 
 const Navbar = () => {
+  const [hamburgerMenuOpen, setHamburgerMenuOpen] = useState<boolean>();
+
+  // Closes the hamburger menu dropdown when the menu target is not on the screen.
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth > 767) {
+        setHamburgerMenuOpen(false);
+      }
+    };
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
   return (
     <nav className='mx-auto flex w-full max-w-7xl items-center justify-between p-4'>
       <NavLink to='/'>
@@ -23,24 +37,33 @@ const Navbar = () => {
       </div>
       {/* Hamburger menu for smaller screens. */}
       <div className='md:hidden'>
-        <Menu width={200}>
+        <Menu
+          width={200}
+          closeOnClickOutside
+          closeOnItemClick
+          opened={hamburgerMenuOpen}
+          onChange={setHamburgerMenuOpen}
+        >
           <Menu.Target>
             <HamburgerMenuTarget children={undefined} />
           </Menu.Target>
           <Menu.Dropdown
             styles={{ dropdown: { backgroundColor: 'rgb(64, 64, 64)' } }}
           >
-            <HamburgerMenuItem
+            <Menu.Item
+              component={HamburgerMenuItem}
               to='/apod'
               text='Picture of the Day'
               icon={<Camera size={16} />}
             />
-            <HamburgerMenuItem
+            <Menu.Item
+              component={HamburgerMenuItem}
               to='/library'
               text='Multimedia Library'
               icon={<Library size={16} />}
             />
-            <HamburgerMenuItem
+            <Menu.Item
+              component={HamburgerMenuItem}
               to='/epic'
               text='EPIC'
               icon={<Earth size={16} />}
