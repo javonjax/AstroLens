@@ -33,7 +33,7 @@ const LibraryContent = ({
   onClickSuggestedTerm,
 }: LibraryContentProps) => {
   return (
-    <div className='flex h-full w-full max-w-7xl flex-col items-center'>
+    <div className='flex h-full w-full max-w-7xl flex-col items-center px-4'>
       <div className='m-2 flex flex-col items-center'>
         {content === undefined && (
           <div className='flex flex-col items-center'>

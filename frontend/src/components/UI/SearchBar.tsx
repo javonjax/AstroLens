@@ -20,9 +20,12 @@ const SearchBar = ({
   disabled,
 }: SearchBarProps) => {
   return (
-    <form className='m-4 flex items-center' onSubmit={onSearch}>
+    <form
+      className='m-4 flex w-full items-center justify-center'
+      onSubmit={onSearch}
+    >
       <Input
-        className={clsx(`mr-4 w-[400px]`, inputClassname)}
+        className={clsx(`mr-4 flex w-full max-w-[400px]`, inputClassname)}
         placeholder='Search for... (e.g. "Black hole")'
         value={value}
         onChange={(e) => setValue(e.currentTarget.value)}

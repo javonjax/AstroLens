@@ -25,7 +25,7 @@ const LibrarySearch = ({
   const currentYear: number = new Date().getFullYear();
 
   return (
-    <div className='m-2 flex w-fit flex-col items-center justify-center'>
+    <div className='m-2 flex w-full flex-col items-center justify-center'>
       <h1 className='m-2 text-center text-5xl'>
         Explore the NASA multimedia library.
       </h1>

@@ -31,7 +31,8 @@ const ApodContent = ({
 
   return (
     <>
-      <div className='flex w-full max-w-7xl flex-col items-center px-4'>
+      <div className='flex h-full w-full max-w-7xl flex-col items-center px-4'>
+        <h1 className='m-4 text-5xl'>Atronomy Picture of the Day</h1>
         <div className='flex w-full items-center justify-center'>
           <DatePicker
             label='Find an APOD'
@@ -41,7 +42,6 @@ const ApodContent = ({
           <SearchButton classname='ml-4' onClick={() => fetchAPOD(queryDate)} />
         </div>
         <div className='flex w-full max-w-7xl flex-col items-center text-center'>
-          <h1 className='m-4 text-5xl'>Atronomy Picture of the Day</h1>
           <h1 className='m-4 text-5xl'>{formattedDate}</h1>
           {media_type === 'image' && (
             <a
