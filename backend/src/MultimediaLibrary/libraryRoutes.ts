@@ -1,19 +1,13 @@
 import express, { Request, Response, Router } from 'express';
 import dotenv from 'dotenv';
 
-dotenv.config();
-
-const router: Router = express.Router();
-const NASA_API_KEY = process.env.NASA_API_KEY;
-const NASA_LIBRARY_URL = process.env.LIBRARY_URL;
-
-export interface LibraryResponseData {
+export interface LibraryData {
   href: string;
-  data: MultimediaData[];
+  data: LibraryItem[];
   links: ImageLink[];
 }
 
-export interface MultimediaData {
+export interface LibraryItem {
   center: string;
   date_created: string;
   description: string;
@@ -30,8 +24,13 @@ export interface ImageLink {
   rel: string;
 }
 
+dotenv.config();
+const router: Router = express.Router();
+const NASA_API_KEY = process.env.NASA_API_KEY;
+const NASA_LIBRARY_URL = process.env.LIBRARY_URL;
+
 /*
-    GET resources from the NASA image library.
+    GET data from the NASA image library API.
 */
 router.get(
   '/library',
@@ -41,6 +40,9 @@ router.get(
         throw new Error('API key is not set.');
       }
 
+      if (typeof NASA_LIBRARY_URL !== 'string') {
+        throw new Error('URL is not set.');
+      }
       const queryParams: string = new URLSearchParams(
         request.query as Record<string, string>,
       ).toString();
@@ -56,12 +58,11 @@ router.get(
       }
 
       const responseData = await res.json();
-      const multimediaData: LibraryResponseData[] =
-        responseData?.collection?.items;
+      const multimediaData: LibraryData[] = responseData?.collection?.items;
 
       const requiredKeys: string[] = ['data', 'href', 'links'];
-      const validObjects: LibraryResponseData[] = multimediaData.filter(
-        (item) => requiredKeys.every((key) => key in item),
+      const validObjects: LibraryData[] = multimediaData.filter((item) =>
+        requiredKeys.every((key) => key in item),
       );
       response.status(200).json(validObjects);
     } catch (error) {

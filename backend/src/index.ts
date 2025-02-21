@@ -2,7 +2,8 @@ import express, { Request, Response } from 'express';
 import dotenv from 'dotenv';
 import cors from 'cors';
 import apodRoutes from './APOD/apodRoutes';
-import libraryRoutes from './libraryRoutes/libraryRoutes';
+import libraryRoutes from './MultimediaLibrary/libraryRoutes';
+import epicRoutes from './EPIC/epicRoutes';
 
 dotenv.config();
 
@@ -14,6 +15,7 @@ app.use(express.json());
 app.use(cors());
 app.use('/api', apodRoutes);
 app.use('/api', libraryRoutes);
+app.use('/api', epicRoutes);
 
 // Routes
 app.get('/', (req: Request, res: Response) => {
