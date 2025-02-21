@@ -3,13 +3,13 @@ import { DatePickerInput } from '@mantine/dates';
 import { Calendar } from 'lucide-react';
 
 export interface DatePickerProps {
-  label: string;
+  placeholder?: string;
   queryDate: Date | null;
   setQueryDate: React.Dispatch<React.SetStateAction<Date | null>>;
 }
 
 const DatePicker = ({
-  label,
+  placeholder,
   queryDate,
   setQueryDate,
 }: DatePickerProps): React.JSX.Element => {
@@ -17,8 +17,8 @@ const DatePicker = ({
     <>
       <DatePickerInput
         clearable
-        placeholder='Pick a date'
-        className='my-4 w-full max-w-[400px] grow text-center'
+        placeholder={placeholder}
+        className='my-4 w-full max-w-[400px] text-center'
         allowDeselect
         leftSection={<Calendar size={16} />}
         leftSectionPointerEvents='none'

@@ -2,7 +2,7 @@ import { motion } from 'framer-motion';
 
 const Hero = () => {
   return (
-    <div className='relative mb-4 flex max-h-[28%] w-full items-center justify-center'>
+    <div className='relative mb-4 flex h-[650px] w-full items-center justify-center'>
       <img src='/cosmos.jpg' className='h-full w-full object-fill'></img>
       <motion.div
         className='translate-[-50%] absolute left-[50%] top-[50%] transform'

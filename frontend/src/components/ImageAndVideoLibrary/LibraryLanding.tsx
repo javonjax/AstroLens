@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import LibrarySearch, { MediaType } from './LibrarySearch';
-import { LibraryResponseData } from '@backend/libraryRoutes/libraryRoutes.ts';
+import { LibraryData } from '@backend/MultimediaLibrary/libraryRoutes.ts';
 import LibraryContent from './LibraryContent.tsx';
 import { useSearchParams } from 'react-router-dom';
 
@@ -15,7 +15,7 @@ const LibraryLanding = () => {
     new Date().getFullYear(),
   ]);
   const [searchResults, setSearchResults] = useState<
-    LibraryResponseData[] | undefined
+    LibraryData[] | undefined
   >();
   const [queryMediaTypes, setQueryMediaTypes] = useState<
     Record<MediaType, boolean>
@@ -28,7 +28,7 @@ const LibraryLanding = () => {
     const fetchLibraryData = async () => {
       const url: string = `${BACKEND_LIB_URL}?${searchParams.toString()}`;
       const res: globalThis.Response = await fetch(url);
-      const searchResults: LibraryResponseData[] = await res.json();
+      const searchResults: LibraryData[] = await res.json();
       console.log(searchResults);
       setSearchResults(searchResults);
     };

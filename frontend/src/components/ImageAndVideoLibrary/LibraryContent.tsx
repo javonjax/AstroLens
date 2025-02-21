@@ -1,8 +1,8 @@
-import { LibraryResponseData } from '@backend/libraryRoutes/libraryRoutes';
+import { LibraryData } from '@backend/MultimediaLibrary/libraryRoutes';
 
 export interface LibraryContentProps {
   searchParam?: string | null;
-  content?: LibraryResponseData[];
+  content?: LibraryData[];
   onClickSuggestedTerm: (
     e: React.FormEvent,
     searchTerm?: string,
@@ -33,7 +33,7 @@ const LibraryContent = ({
   onClickSuggestedTerm,
 }: LibraryContentProps) => {
   return (
-    <div className='flex h-full w-full max-w-7xl flex-col items-center px-4'>
+    <div className='flex h-full w-full max-w-7xl flex-col items-center'>
       <div className='m-2 flex flex-col items-center'>
         {content === undefined && (
           <div className='flex flex-col items-center'>

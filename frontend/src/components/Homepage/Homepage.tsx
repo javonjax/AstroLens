@@ -31,7 +31,7 @@ const Homepage = () => {
         <p className='mb-4'>Get Started</p>
         <ChevronsDown size={72} className='animate-bounce' />
       </div>
-      <div className='flex w-full max-w-7xl flex-col px-4'>
+      <div className='flex w-full max-w-7xl flex-col p-4'>
         {cards.map((card, idx) => (
           <NavCard
             key={card.title}

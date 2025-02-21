@@ -30,7 +30,7 @@ const SearchBar = ({
         value={value}
         onChange={(e) => setValue(e.currentTarget.value)}
       />
-      <SearchButton disabled={disabled} classname={buttonClassname} />
+      <SearchButton disabled={disabled} className={buttonClassname} />
     </form>
   );
 };
