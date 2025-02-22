@@ -1,34 +1,7 @@
 import express, { Request, Response, Router } from 'express';
 import { z } from 'zod';
 import dotenv from 'dotenv';
-
-const EpicCoordinatesSchema = z.object({
-  x: z.number(),
-  y: z.number(),
-  z: z.number(),
-});
-export type EpicCoordinates = z.infer<typeof EpicCoordinatesSchema>;
-
-const EpicMetadataSchema = z.object({
-  image: z.string(),
-  date: z.string(),
-  dscovr_j2000_position: EpicCoordinatesSchema,
-  lunar_j2000_position: EpicCoordinatesSchema,
-  sun_j2000_position: EpicCoordinatesSchema,
-  centroid_coordinates: z.object({
-    lat: z.number(),
-    lon: z.number(),
-  }),
-});
-export type EpicMetadata = z.infer<typeof EpicCoordinatesSchema>;
-
-const EpicApiResponse = z.array(EpicMetadataSchema);
-
-const EpicQueryParamsSchema = z.object({
-  date: z.string(),
-  collection: z.string(),
-});
-export type EpicQueryParams = z.infer<typeof EpicQueryParamsSchema>;
+import { EpicApiResponseSchema, EpicQueryParamsSchema } from './types';
 
 dotenv.config();
 const router: Router = express.Router();
@@ -46,7 +19,6 @@ router.get(
       }
 
       const parsedQueryParams = EpicQueryParamsSchema.safeParse(request.query);
-
       if (!parsedQueryParams.success) {
         response.status(400).json({
           message: 'Invalid query params.',
@@ -55,19 +27,23 @@ router.get(
         return;
       }
 
+      // Excluding the date from requests to the NASA EPIC API will return the most recent image collection.
+      let url: string = `${EPIC_API_URL}/${parsedQueryParams.data.collection}`;
+      if (parsedQueryParams.data.date) {
+        url += `/date/${parsedQueryParams.data.date}`;
+      }
       const res: globalThis.Response = await fetch(
         `${EPIC_API_URL}/${parsedQueryParams.data.collection}/date/${parsedQueryParams.data.date}`,
       );
-
       const responseData = await res.json();
-      console.log(responseData);
-      const parsedApiResponse = EpicApiResponse.safeParse(responseData);
-
+      const parsedApiResponse = EpicApiResponseSchema.safeParse(responseData);
       if (!parsedApiResponse.success) {
-        console.log(parsedApiResponse.error.errors);
         throw new Error('API response does not fit the desired schema.');
       }
-
+      if (!parsedApiResponse.data.length) {
+        response.status(404).json({ message: 'Images not found.' });
+        return;
+      }
       response.status(200).json(parsedApiResponse.data);
       return;
     } catch (error) {

@@ -13,24 +13,31 @@ const DatePicker = ({
   queryDate,
   setQueryDate,
 }: DatePickerProps): React.JSX.Element => {
+  /*
+    Styling for this component is added through the Mantine styles API rather than tailwind.
+  */
   return (
-    <>
-      <DatePickerInput
-        clearable
-        placeholder={placeholder}
-        className='my-4 w-full max-w-[400px] text-center'
-        allowDeselect
-        leftSection={<Calendar size={16} />}
-        leftSectionPointerEvents='none'
-        radius='md'
-        minDate={new Date(1995, 5, 16)}
-        maxDate={new Date()}
-        value={queryDate}
-        onChange={setQueryDate}
-        firstDayOfWeek={0}
-        hideOutsideDates
-      />
-    </>
+    <DatePickerInput
+      clearable
+      placeholder={placeholder}
+      styles={{
+        root: {
+          marginBottom: '1rem',
+          marginTop: '1rem',
+          width: '100%',
+          maxWidth: '400px',
+        },
+      }}
+      allowDeselect
+      leftSection={<Calendar size={16} />}
+      leftSectionPointerEvents='none'
+      minDate={new Date(1995, 5, 16)}
+      maxDate={new Date()}
+      value={queryDate}
+      onChange={setQueryDate}
+      firstDayOfWeek={0}
+      hideOutsideDates
+    />
   );
 };
 

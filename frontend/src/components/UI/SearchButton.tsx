@@ -17,7 +17,7 @@ const SearchButton = ({
       disabled={disabled}
       type='submit'
       className={clsx(
-        'flex h-[36px] cursor-pointer items-center rounded-xl bg-yellow-300 p-4 text-black hover:bg-yellow-200 disabled:cursor-default disabled:bg-neutral-700',
+        'flex h-[36px] cursor-pointer items-center rounded-[0.25rem] bg-yellow-300 p-4 text-black hover:bg-yellow-200 disabled:cursor-default disabled:bg-[var(--mantine-color-dark-6)]',
         className,
       )}
       onClick={onClick}

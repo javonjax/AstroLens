@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import LibrarySearch, { MediaType } from './LibrarySearch';
+import LibrarySearch, { MediaType } from './LibrarySearchComponents.tsx';
 import { LibraryData } from '@backend/MultimediaLibrary/libraryRoutes.ts';
 import LibraryContent from './LibraryContent.tsx';
 import { useSearchParams } from 'react-router-dom';
