@@ -1,24 +1,27 @@
 import { z } from 'zod';
 
-export const EpicCoordinatesSchema = z.object({
+export const CoordinatesSchema = z.object({
   x: z.number(),
   y: z.number(),
   z: z.number(),
 });
-export type EpicCoordinates = z.infer<typeof EpicCoordinatesSchema>;
+export type Coordinates = z.infer<typeof CoordinatesSchema>;
 
 export const EpicMetadataSchema = z.object({
   image: z.string(),
   date: z.string(),
-  dscovr_j2000_position: EpicCoordinatesSchema,
-  lunar_j2000_position: EpicCoordinatesSchema,
-  sun_j2000_position: EpicCoordinatesSchema,
+  dscovr_j2000_position: CoordinatesSchema,
+  lunar_j2000_position: CoordinatesSchema,
+  sun_j2000_position: CoordinatesSchema,
   centroid_coordinates: z.object({
     lat: z.number(),
     lon: z.number(),
   }),
+  // Image source and thumbnail url are generated after the metadata is retrieved.
+  imageSourceUrl: z.string().optional(),
+  thumbnailUrl: z.string().optional(),
 });
-export type EpicMetadata = z.infer<typeof EpicCoordinatesSchema>;
+export type EpicMetadata = z.infer<typeof EpicMetadataSchema>;
 
 export const EpicQueryParamsSchema = z.object({
   date: z.string().optional(),

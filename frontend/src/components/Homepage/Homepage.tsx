@@ -27,10 +27,10 @@ const Homepage = () => {
   return (
     <>
       <Hero />
-      <div className='m-8 flex flex-col items-center'>
+      {/* <div className='m-8 flex flex-col items-center'>
         <p className='mb-4'>Get Started</p>
         <ChevronsDown size={72} className='animate-bounce' />
-      </div>
+      </div> */}
       <div className='flex w-full max-w-7xl flex-col p-4'>
         {cards.map((card, idx) => (
           <NavCard

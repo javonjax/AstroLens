@@ -2,24 +2,25 @@ import { data, useSearchParams } from 'react-router-dom';
 import EpicContent from './EpicContent';
 import { useQuery } from '@tanstack/react-query';
 import { useEffect, useState } from 'react';
-import DatePicker from '../DatePicker/DatePicker';
+import DatePicker from '../UI/DatePicker';
 import SearchButton from '../UI/SearchButton';
 import { Input } from '@mantine/core';
 import EpicSearchComponents from './EpicSearchComponents';
+import { Embla } from '@mantine/carousel';
 
 const BACKEND_EPIC_URL = import.meta.env.VITE_BACKEND_EPIC_URL;
 
 export type ImageCollection = 'Natural' | 'Enhanced';
 
 const EpicLanding = () => {
-  // Date is initially null because excluding the date from requests to the NASA EPIC API
-  // will return the most recent image collection.
-  const [queryDate, setQueryDate] = useState<Date | null>(null);
+  const [queryDate, setQueryDate] = useState<Date | null>(null); // Querying the API with no date param returns the most recent images.
   const [imageCollection, setImageCollection] =
     useState<ImageCollection>('Natural');
   const [searchParams, setSearchParams] = useSearchParams({
     collection: imageCollection,
   });
+  const [embla, setEmbla] = useState<Embla | null>(null); // Carousel API.
+  const [currentIndex, setCurrentIndex] = useState<number>(0);
   const fetchEpicImageData = async () => {
     console.log('fetching');
     const url: string = `${BACKEND_EPIC_URL}?${searchParams.toString()}`;
@@ -36,15 +37,25 @@ const EpicLanding = () => {
   });
 
   useEffect(() => {
-    console.log('param change', searchParams);
-  }, [searchParams]);
+    setSearchParams((prev) => {
+      prev.set('collection', imageCollection.toLowerCase());
+      return prev;
+    });
+  }, [imageCollection]);
 
+  // Register carousel event listener.
   useEffect(() => {
-    if (queryDate) {
-      const date: string = queryDate.toLocaleDateString('en-CA');
-      console.log(date);
+    if (!embla) {
+      return;
     }
-  }, [queryDate]);
+    const onSelect = (): void => setCurrentIndex(embla.selectedScrollSnap());
+    embla.on('select', onSelect);
+    onSelect();
+
+    return () => {
+      embla.off('select', onSelect);
+    };
+  }, [embla]);
 
   return (
     <div className='flex h-full w-full max-w-7xl flex-col items-center px-4'>
@@ -58,7 +69,11 @@ const EpicLanding = () => {
         imageCollection={imageCollection}
         setImageCollection={setImageCollection}
       />
-      <EpicContent imageData={imageData} />
+      <EpicContent
+        imageData={imageData}
+        setEmbla={setEmbla}
+        currentIndex={currentIndex}
+      />
       <button
         onClick={() =>
           setSearchParams((prev) => {

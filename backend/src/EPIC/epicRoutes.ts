@@ -1,7 +1,12 @@
 import express, { Request, Response, Router } from 'express';
 import { z } from 'zod';
 import dotenv from 'dotenv';
-import { EpicApiResponseSchema, EpicQueryParamsSchema } from './types';
+import {
+  EpicApiResponse,
+  EpicApiResponseSchema,
+  EpicMetadata,
+  EpicQueryParamsSchema,
+} from './types';
 
 dotenv.config();
 const router: Router = express.Router();
@@ -28,14 +33,14 @@ router.get(
       }
 
       // Excluding the date from requests to the NASA EPIC API will return the most recent image collection.
-      let url: string = `${EPIC_API_URL}/${parsedQueryParams.data.collection}`;
+      let url: string = `${EPIC_API_URL}/${parsedQueryParams.data.collection.toLowerCase()}`;
       if (parsedQueryParams.data.date) {
         url += `/date/${parsedQueryParams.data.date}`;
       }
-      const res: globalThis.Response = await fetch(
-        `${EPIC_API_URL}/${parsedQueryParams.data.collection}/date/${parsedQueryParams.data.date}`,
-      );
+      console.log(url);
+      const res: globalThis.Response = await fetch(url);
       const responseData = await res.json();
+
       const parsedApiResponse = EpicApiResponseSchema.safeParse(responseData);
       if (!parsedApiResponse.success) {
         throw new Error('API response does not fit the desired schema.');
@@ -44,7 +49,22 @@ router.get(
         response.status(404).json({ message: 'Images not found.' });
         return;
       }
-      response.status(200).json(parsedApiResponse.data);
+
+      const imageData: EpicApiResponse = parsedApiResponse.data.map((item) => {
+        const date: string[] = item.date.split(' ')[0].split('-');
+        const year: string = date[0];
+        const month: string = date[1];
+        const day: string = date[2];
+        const imageSource: string = `https://epic.gsfc.nasa.gov/archive/${parsedQueryParams.data.collection.toLowerCase()}/${year}/${month}/${day}/jpg/${item.image}.jpg`;
+        const thumbnail: string = `https://epic.gsfc.nasa.gov/archive/${parsedQueryParams.data.collection.toLowerCase()}/${year}/${month}/${day}/thumbs/${item.image}.jpg`;
+        return {
+          ...item,
+          imageSourceUrl: imageSource,
+          thumbnailUrl: thumbnail,
+        };
+      });
+
+      response.status(200).json(imageData);
       return;
     } catch (error) {
       if (error instanceof Error) {

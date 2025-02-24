@@ -1,5 +1,5 @@
 import { Button, Input, Menu } from '@mantine/core';
-import DatePicker from '../DatePicker/DatePicker';
+import DatePicker from '../UI/DatePicker';
 import SearchButton from '../UI/SearchButton';
 import { SetURLSearchParams } from 'react-router-dom';
 import { ImageCollection } from './EpicLanding';
@@ -35,7 +35,7 @@ const EpicSearchComponents = ({
               if (queryDate) {
                 const date: string = queryDate.toLocaleDateString('en-CA');
                 prev.set('date', date);
-                prev.set('collection', imageCollection);
+                prev.set('collection', imageCollection.toLowerCase());
               }
               return prev;
             });
@@ -43,7 +43,7 @@ const EpicSearchComponents = ({
         />
       </div>
       <div className='flex items-center justify-center'>
-        <label className='mr-4'>Select image type:</label>
+        <label className='mr-4'>Select image quality:</label>
         <Menu>
           <Menu.Target>
             <Button

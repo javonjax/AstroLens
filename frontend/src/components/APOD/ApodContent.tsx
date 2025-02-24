@@ -1,5 +1,5 @@
 import { Search } from 'lucide-react';
-import DatePicker from '../DatePicker/DatePicker';
+import DatePicker from '../UI/DatePicker';
 import { Apod } from './ApodLanding';
 import { useEffect, useState } from 'react';
 import SearchButton from '../UI/SearchButton';
