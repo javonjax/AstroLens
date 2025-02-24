@@ -1,5 +1,5 @@
 import { NavLink } from 'react-router-dom';
-import Reveal from '../Animations/Reveal';
+import RevealOnScroll from '../Animations/RevealOnScroll';
 
 export interface NavCardProps {
   title: string;
@@ -19,7 +19,7 @@ const NavCard = ({
   delay,
 }: NavCardProps): React.JSX.Element => {
   return (
-    <Reveal side={side} delay={delay}>
+    <RevealOnScroll side={side} delay={delay}>
       <div className={`relative h-[400px] w-[400px]`}>
         <>
           <img src={`../${imgName}`} className='rounded-[50%]' loading='lazy' />
@@ -34,7 +34,7 @@ const NavCard = ({
           </div>
         </>
       </div>
-    </Reveal>
+    </RevealOnScroll>
   );
 };
 

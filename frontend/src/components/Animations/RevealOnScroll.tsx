@@ -7,7 +7,11 @@ export interface RevealProps {
   delay?: number;
 }
 
-const Reveal = ({ children, side, delay }: RevealProps): React.JSX.Element => {
+const RevealOnScroll = ({
+  children,
+  side,
+  delay,
+}: RevealProps): React.JSX.Element => {
   const revealRef = useRef(null);
   const isInView: boolean = useInView(revealRef, {
     amount: 'some',
@@ -42,4 +46,4 @@ const Reveal = ({ children, side, delay }: RevealProps): React.JSX.Element => {
   );
 };
 
-export default Reveal;
+export default RevealOnScroll;
