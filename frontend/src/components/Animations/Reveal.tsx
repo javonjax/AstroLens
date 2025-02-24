@@ -4,21 +4,20 @@ import { useEffect, useRef } from 'react';
 export interface RevealProps {
   children: React.JSX.Element;
   side?: string;
+  delay?: number;
 }
 
-const Reveal = ({ children, side }: RevealProps): React.JSX.Element => {
+const Reveal = ({ children, side, delay }: RevealProps): React.JSX.Element => {
   const revealRef = useRef(null);
   const isInView: boolean = useInView(revealRef, {
-    amount: 0.75,
-    once: true,
+    amount: 'some',
+    // once: true,
     margin: '0px',
   });
   const mainControls = useAnimation();
 
   useEffect(() => {
     if (isInView) {
-      console.log(side);
-      console.log('div in viewS', isInView);
       mainControls.start('visible');
     }
   }, [isInView]);
@@ -36,7 +35,7 @@ const Reveal = ({ children, side }: RevealProps): React.JSX.Element => {
       }}
       initial='hidden'
       animate={mainControls}
-      transition={{ duration: 1, delay: 0.25 }}
+      transition={{ duration: 0.5, delay: delay }}
     >
       {children}
     </motion.div>

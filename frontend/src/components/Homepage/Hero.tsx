@@ -22,10 +22,17 @@ const Hero = () => {
         >
           <h1 className='text-7xl'>Explore the Universe</h1>
         </motion.div>
-        <div className='m-8 flex flex-col items-center'>
+        <button
+          className='m-8 flex cursor-pointer flex-col items-center'
+          onClick={() => {
+            console.log('fire');
+            const element = document.getElementById('homepage-nav-cards');
+            element?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }}
+        >
           <p className='mb-4'>Get Started</p>
           <ChevronsDown size={72} className='animate-bounce' />
-        </div>
+        </button>
       </div>
     </>
   );

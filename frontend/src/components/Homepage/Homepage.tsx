@@ -1,14 +1,7 @@
-import { ChevronsDown } from 'lucide-react';
 import Hero from './Hero';
 import NavCard from './NavCard';
 
 const cards: { [key: string]: string }[] = [
-  {
-    title: 'EPIC Images',
-    text: `See Earth from a stunning new perspective. NASA's Earth Polychromatic Imaging Camera (EPIC) provides awe-inspiring images our planet.`,
-    imgName: 'earth.webp',
-    path: 'epic',
-  },
   {
     title: 'Astronomy Picture of the Day',
     text: `Explore the wonders of the universe. Every day, NASA brings you a stunning image that showcases the beauty and mystery of space.`,
@@ -16,10 +9,16 @@ const cards: { [key: string]: string }[] = [
     path: 'apod',
   },
   {
-    title: 'NASA Image and Video Explorer',
+    title: 'NASA Multimedia Library',
     text: `Dive into NASA's vast archive of images and videos. Whether it's the beauty of space, the science behind space missions, or epic launch moments, this collection has something for everyone.`,
     imgName: 'moon_landing.jpg',
     path: 'explorer',
+  },
+  {
+    title: 'EPIC Images',
+    text: `See Earth from a stunning new perspective. NASA's Earth Polychromatic Imaging Camera (EPIC) provides awe-inspiring images our planet.`,
+    imgName: 'earth.webp',
+    path: 'epic',
   },
 ];
 
@@ -27,11 +26,10 @@ const Homepage = () => {
   return (
     <>
       <Hero />
-      {/* <div className='m-8 flex flex-col items-center'>
-        <p className='mb-4'>Get Started</p>
-        <ChevronsDown size={72} className='animate-bounce' />
-      </div> */}
-      <div className='flex w-full max-w-7xl flex-col p-4'>
+      <div
+        id='homepage-nav-cards'
+        className='flex w-full max-w-7xl flex-col p-4'
+      >
         {cards.map((card, idx) => (
           <NavCard
             key={card.title}
@@ -40,6 +38,7 @@ const Homepage = () => {
             imgName={card.imgName}
             side={idx % 2 === 0 ? 'left' : 'right'}
             path={card.path}
+            delay={(idx + 1) * 0.5}
           />
         ))}
       </div>

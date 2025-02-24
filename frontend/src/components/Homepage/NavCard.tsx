@@ -7,6 +7,7 @@ export interface NavCardProps {
   imgName: string;
   side: string;
   path: string;
+  delay?: number;
 }
 
 const NavCard = ({
@@ -15,9 +16,10 @@ const NavCard = ({
   imgName,
   side,
   path,
+  delay,
 }: NavCardProps): React.JSX.Element => {
   return (
-    <Reveal side={side}>
+    <Reveal side={side} delay={delay}>
       <div className={`relative h-[400px] w-[400px]`}>
         <>
           <img src={`../${imgName}`} className='rounded-[50%]' loading='lazy' />
