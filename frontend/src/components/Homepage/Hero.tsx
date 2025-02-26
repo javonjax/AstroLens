@@ -62,7 +62,6 @@ const Hero = () => {
         <button
           className='m-8 flex cursor-pointer flex-col items-center'
           onClick={() => {
-            console.log('fire');
             const element = document.getElementById('homepage-nav-cards');
             element?.scrollIntoView({ behavior: 'smooth', block: 'start' });
           }}

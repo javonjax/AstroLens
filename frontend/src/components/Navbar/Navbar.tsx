@@ -3,7 +3,7 @@ import Logo from '../Logo/Logo';
 import NavbarVerticalRule from './NavbarVerticalRule';
 import NavBarItem from './NavBarItem';
 import { Menu } from '@mantine/core';
-import { Camera, Earth, Library, Menu as MenuButton } from 'lucide-react';
+import { Camera, Earth, Library } from 'lucide-react';
 import HamburgerMenuItem from './HamburgerMenuItem';
 import HamburgerMenuTarget from './HamburgerMenuTarget';
 import { useEffect, useState } from 'react';

@@ -1,4 +1,5 @@
 import { LibraryData } from '@backend/MultimediaLibrary/libraryRoutes';
+import LibraryGrid from './LibraryGrid';
 
 export interface LibraryContentProps {
   searchParam?: string | null;
@@ -61,6 +62,7 @@ const LibraryContent = ({
                 {suggestedSearchTerms.map((searchTerm) => {
                   return (
                     <button
+                      key={`${searchTerm}-button`}
                       className='m-2 cursor-pointer text-yellow-400 underline'
                       onClick={(e) => onClickSuggestedTerm(e, searchTerm)}
                     >
@@ -73,20 +75,7 @@ const LibraryContent = ({
           </>
         )}
       </div>
-      <div className='m-4 grid h-full w-full grid-cols-[repeat(auto-fit,minmax(350px,30%))] justify-center gap-x-8 gap-y-16'>
-        {content?.map((item) => {
-          return (
-            <div key={item.data[0].nasa_id} className='h-full max-h-[300px]'>
-              <img
-                alt={item.data[0].title}
-                className='h-[80%] w-full object-fill'
-                src={item.links[0].href}
-              />
-              <h1 className='break-words text-center'>{item.data[0].title}</h1>
-            </div>
-          );
-        })}
-      </div>
+      <LibraryGrid content={content} />
     </div>
   );
 };

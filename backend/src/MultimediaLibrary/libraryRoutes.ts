@@ -1,28 +1,6 @@
 import express, { Request, Response, Router } from 'express';
 import dotenv from 'dotenv';
-
-export interface LibraryData {
-  href: string;
-  data: LibraryItem[];
-  links: ImageLink[];
-}
-
-export interface LibraryItem {
-  center: string;
-  date_created: string;
-  description: string;
-  keywords: string[];
-  location: string;
-  nasa_id: string;
-  title: string;
-  media_type: string;
-  photographer?: string;
-}
-
-export interface ImageLink {
-  href: string;
-  rel: string;
-}
+import { LibraryData } from './types';
 
 dotenv.config();
 const router: Router = express.Router();
@@ -47,9 +25,8 @@ router.get(
         request.query as Record<string, string>,
       ).toString();
 
-      const res: globalThis.Response = await fetch(
-        `${NASA_LIBRARY_URL}?${queryParams}`,
-      );
+      const url: string = `${NASA_LIBRARY_URL}?${queryParams}`;
+      const res: globalThis.Response = await fetch(url);
       console.log(`${NASA_LIBRARY_URL}?${queryParams}`);
       if (!res.ok) {
         throw new Error(
@@ -59,6 +36,7 @@ router.get(
 
       const responseData = await res.json();
       const multimediaData: LibraryData[] = responseData?.collection?.items;
+      const nextPage = responseData?.collection?.links[0]?.href;
 
       const requiredKeys: string[] = ['data', 'href', 'links'];
       const validObjects: LibraryData[] = multimediaData.filter((item) =>
