@@ -29,5 +29,5 @@ export const EpicQueryParamsSchema = z.object({
 });
 export type EpicQueryParams = z.infer<typeof EpicQueryParamsSchema>;
 
-export const EpicApiResponseSchema = z.array(EpicMetadataSchema);
-export type EpicApiResponse = z.infer<typeof EpicApiResponseSchema>;
+export const EpicAPIResponseSchema = z.array(EpicMetadataSchema);
+export type EpicAPIResponse = z.infer<typeof EpicAPIResponseSchema>;

@@ -20,9 +20,13 @@ const NavCard = ({
 }: NavCardProps): React.JSX.Element => {
   return (
     <RevealOnScroll side={side} delay={delay}>
-      <div className={`relative h-[400px] w-[400px]`}>
+      <div className={`relative h-[33vh] w-[33vh]`}>
         <>
-          <img src={`../${imgName}`} className='rounded-[50%]' loading='lazy' />
+          <img
+            src={`../${imgName}`}
+            className='h-full rounded-[50%]'
+            loading='lazy'
+          />
           <div
             className={`absolute top-[50%] ${side === 'left' ? 'left-[50%]' : 'right-[50%]'} h-fit w-[400px] -translate-y-[50%] transform rounded-2xl bg-neutral-800 p-4`}
           >

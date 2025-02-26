@@ -1,4 +1,4 @@
-import { LibraryData } from '@backend/MultimediaLibrary/libraryRoutes';
+import { LibraryData } from '@backend/MultimediaLibrary/types';
 import LibraryGrid from './LibraryGrid';
 
 export interface LibraryContentProps {
@@ -43,6 +43,7 @@ const LibraryContent = ({
               {suggestedSearchTerms.map((searchTerm) => {
                 return (
                   <button
+                    key={`${searchTerm}-button`}
                     className='m-2 cursor-pointer text-yellow-400 underline'
                     onClick={(e) => onClickSuggestedTerm(e, searchTerm)}
                   >

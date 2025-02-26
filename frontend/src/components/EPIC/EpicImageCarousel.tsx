@@ -1,9 +1,9 @@
-import { EpicApiResponse } from '@backend/EPIC/types';
+import { EpicAPIResponse } from '@backend/EPIC/types';
 import { Carousel } from '@mantine/carousel';
 import { EmblaCarouselType } from 'embla-carousel-react';
 
 export interface EpicImageCarouselProps {
-  imageData: EpicApiResponse;
+  imageData: EpicAPIResponse;
   setEmbla: React.Dispatch<React.SetStateAction<EmblaCarouselType | null>>;
 }
 
@@ -29,7 +29,7 @@ const EpicImageCarousel = ({ imageData, setEmbla }: EpicImageCarouselProps) => {
             >
               <a className='mb-8' href={item.imageSourceUrl} target='_blank'>
                 <img
-                  className='object-fit h-auto max-w-full'
+                  className='h-auto max-w-full'
                   src={item.imageSourceUrl}
                 ></img>
               </a>

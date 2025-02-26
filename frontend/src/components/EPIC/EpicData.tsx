@@ -1,10 +1,10 @@
-import { Coordinates, EpicApiResponse } from '@backend/EPIC/types';
+import { Coordinates, EpicAPIResponse } from '@backend/EPIC/types';
 import { calculateDistance } from './utils';
 import { ArrowRight, Earth, Moon, Satellite, Sun } from 'lucide-react';
 import { Button, Menu } from '@mantine/core';
 
 export interface EpicDataProps {
-  imageData: EpicApiResponse | undefined;
+  imageData: EpicAPIResponse | undefined;
   currentIndex: number;
 }
 

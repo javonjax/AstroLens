@@ -1,12 +1,10 @@
-import { data, useSearchParams } from 'react-router-dom';
+import { useSearchParams } from 'react-router-dom';
 import EpicContent from './EpicContent';
 import { useQuery } from '@tanstack/react-query';
 import { useEffect, useState } from 'react';
-import DatePicker from '../UI/DatePicker';
-import SearchButton from '../UI/SearchButton';
-import { Input } from '@mantine/core';
 import EpicSearchComponents from './EpicSearchComponents';
 import { Embla } from '@mantine/carousel';
+import { EpicAPIResponse } from '@backend/EPIC/types';
 
 const BACKEND_EPIC_URL = import.meta.env.VITE_BACKEND_EPIC_URL;
 
@@ -21,12 +19,12 @@ const EpicLanding = () => {
   });
   const [embla, setEmbla] = useState<Embla | null>(null); // Carousel API.
   const [currentIndex, setCurrentIndex] = useState<number>(0);
-  const fetchEpicImageData = async () => {
+  const fetchEpicImageData = async (): Promise<EpicAPIResponse> => {
     console.log('fetching');
     const url: string = `${BACKEND_EPIC_URL}?${searchParams.toString()}`;
     console.log('url', url);
     const res: globalThis.Response = await fetch(url);
-    const data = await res.json();
+    const data: EpicAPIResponse = await res.json();
     console.log('data', data);
     return data;
   };

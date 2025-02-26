@@ -2,8 +2,8 @@ import express, { Request, Response, Router } from 'express';
 import { z } from 'zod';
 import dotenv from 'dotenv';
 import {
-  EpicApiResponse,
-  EpicApiResponseSchema,
+  EpicAPIResponse,
+  EpicAPIResponseSchema,
   EpicMetadata,
   EpicQueryParamsSchema,
 } from './types';
@@ -41,7 +41,7 @@ router.get(
       const res: globalThis.Response = await fetch(url);
       const responseData = await res.json();
 
-      const parsedApiResponse = EpicApiResponseSchema.safeParse(responseData);
+      const parsedApiResponse = EpicAPIResponseSchema.safeParse(responseData);
       if (!parsedApiResponse.success) {
         throw new Error('API response does not fit the desired schema.');
       }
@@ -50,7 +50,7 @@ router.get(
         return;
       }
 
-      const imageData: EpicApiResponse = parsedApiResponse.data.map((item) => {
+      const imageData: EpicAPIResponse = parsedApiResponse.data.map((item) => {
         const date: string[] = item.date.split(' ')[0].split('-');
         const year: string = date[0];
         const month: string = date[1];

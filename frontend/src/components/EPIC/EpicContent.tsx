@@ -1,10 +1,10 @@
-import { EpicApiResponse } from '@backend/EPIC/types';
+import { EpicAPIResponse } from '@backend/EPIC/types';
 import EpicImageCarousel from './EpicImageCarousel';
 import EpicData from './EpicData';
 import { EmblaCarouselType } from 'embla-carousel-react';
 
 export interface EpicContentProps {
-  imageData: EpicApiResponse | undefined;
+  imageData: EpicAPIResponse | undefined;
   setEmbla: React.Dispatch<React.SetStateAction<EmblaCarouselType | null>>;
   currentIndex: number;
 }
