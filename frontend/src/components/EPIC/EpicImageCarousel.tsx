@@ -7,7 +7,10 @@ export interface EpicImageCarouselProps {
   setEmbla: React.Dispatch<React.SetStateAction<EmblaCarouselType | null>>;
 }
 
-const EpicImageCarousel = ({ imageData, setEmbla }: EpicImageCarouselProps) => {
+const EpicImageCarousel = ({
+  imageData,
+  setEmbla,
+}: EpicImageCarouselProps): React.JSX.Element => {
   return (
     <div className='flex h-full max-h-[800px] w-full max-w-[800px] justify-center'>
       <Carousel

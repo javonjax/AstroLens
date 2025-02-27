@@ -1,6 +1,6 @@
 import { Orbit } from 'lucide-react';
 
-const Logo = () => {
+const Logo = (): React.JSX.Element => {
   return (
     <div className='flex items-center text-2xl'>
       Astr

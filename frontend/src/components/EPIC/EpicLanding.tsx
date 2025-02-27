@@ -10,7 +10,7 @@ const BACKEND_EPIC_URL = import.meta.env.VITE_BACKEND_EPIC_URL;
 
 export type ImageCollection = 'Natural' | 'Enhanced';
 
-const EpicLanding = () => {
+const EpicLanding = (): React.JSX.Element => {
   const [queryDate, setQueryDate] = useState<Date | null>(null); // Querying the API with no date param returns the most recent images.
   const [imageCollection, setImageCollection] =
     useState<ImageCollection>('Natural');
@@ -36,8 +36,9 @@ const EpicLanding = () => {
 
   useEffect(() => {
     setSearchParams((prev) => {
-      prev.set('collection', imageCollection.toLowerCase());
-      return prev;
+      const params = new URLSearchParams(prev);
+      params.set('collection', imageCollection.toLowerCase());
+      return params;
     });
   }, [imageCollection]);
 
@@ -75,9 +76,11 @@ const EpicLanding = () => {
       <button
         onClick={() =>
           setSearchParams((prev) => {
-            prev.set('q', 'hello');
-            prev.set('date', Math.random().toString());
-            return prev;
+            const params = new URLSearchParams(prev);
+            params.set('q', 'hello');
+            params.set('date', Math.random().toString());
+
+            return params;
           })
         }
       >

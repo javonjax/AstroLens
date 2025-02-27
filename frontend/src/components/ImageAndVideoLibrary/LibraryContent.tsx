@@ -1,16 +1,19 @@
 import { LibraryData } from '@backend/MultimediaLibrary/types';
 import LibraryGrid from './LibraryGrid';
+import { Loader } from '@mantine/core';
+import { ChevronLeft, ChevronRight } from 'lucide-react';
+import { SetURLSearchParams } from 'react-router-dom';
 
 export interface LibraryContentProps {
-  searchParam?: string | null;
+  searchParams: URLSearchParams;
+  setSearchParams: SetURLSearchParams;
   content?: LibraryData[];
-  onClickSuggestedTerm: (
-    e: React.FormEvent,
-    searchTerm?: string,
-  ) => Promise<void>;
+  isLoading: boolean;
+  onClickSuggestedTerm: (e: React.FormEvent, searchTerm?: string) => void;
+  next?: string;
+  prev?: string;
 }
 
-//
 const popularSearchTerms = [
   'Aurora Borealis',
   'International Space Station',
@@ -24,17 +27,37 @@ const popularSearchTerms = [
   "Saturn's Rings",
 ];
 
-const suggestedSearchTerms = popularSearchTerms
+const suggestedSearchTerms: string[] = popularSearchTerms
   .sort(() => Math.random() - 0.5)
   .slice(0, 3);
 
 const LibraryContent = ({
-  searchParam,
+  searchParams,
+  setSearchParams,
   content,
+  isLoading,
   onClickSuggestedTerm,
-}: LibraryContentProps) => {
+  next,
+  prev,
+}: LibraryContentProps): React.JSX.Element => {
+  console.log(content?.length);
+  if (isLoading) {
+    return (
+      <div className='flex h-full w-full max-w-7xl flex-col items-center'>
+        <div className='flex h-full w-full items-center justify-center'>
+          <Loader size={50} type='dots' />
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className='flex h-full w-full max-w-7xl flex-col items-center'>
+      {isLoading && (
+        <div className='flex h-full w-full items-center justify-center'>
+          <Loader size={50} type='dots' />
+        </div>
+      )}
       <div className='m-2 flex flex-col items-center'>
         {content === undefined && (
           <div className='flex flex-col items-center'>
@@ -56,7 +79,7 @@ const LibraryContent = ({
         )}
         {content && !content.length && (
           <>
-            <div>No results found for "{searchParam}".</div>
+            <div>No results found for "{searchParams.get('q')}".</div>
             <div className='m-2 flex flex-col items-center'>
               Try these popular search terms.
               <div className='flex items-center'>
@@ -75,8 +98,48 @@ const LibraryContent = ({
             </div>
           </>
         )}
+        {content && content.length > 0 && (
+          <>
+            <h2 className='my-2 text-center text-2xl'>
+              Showing results for "{searchParams.get('q')}"
+            </h2>
+            <LibraryGrid content={content} />
+            <div className='mt-2 flex items-end justify-center'>
+              <button
+                onClick={() => {
+                  if (searchParams.get('page')) {
+                    setSearchParams((prev) => {
+                      const params = new URLSearchParams(prev);
+                      params.set('page', String(Number(prev.get('page')) - 1));
+                      return params;
+                    });
+                  }
+                }}
+                className={`${prev ? 'block' : 'invisible'} flex h-fit cursor-pointer items-center rounded-lg border-2 border-white p-1`}
+              >
+                <ChevronLeft size={24} />
+              </button>
+              <h3 className='mx-4 p-1 text-center text-2xl'>
+                Page {searchParams.get('page')}
+              </h3>
+              <button
+                onClick={() => {
+                  if (searchParams.get('page')) {
+                    setSearchParams((prev) => {
+                      const params = new URLSearchParams(prev);
+                      params.set('page', String(Number(prev.get('page')) + 1));
+                      return params;
+                    });
+                  }
+                }}
+                className={`${next ? 'block' : 'invisible'} h-fit cursor-pointer rounded-lg border-2 border-white p-1`}
+              >
+                <ChevronRight size={24} />
+              </button>
+            </div>
+          </>
+        )}
       </div>
-      <LibraryGrid content={content} />
     </div>
   );
 };

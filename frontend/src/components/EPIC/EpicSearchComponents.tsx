@@ -31,14 +31,15 @@ const EpicSearchComponents = ({
           disabled={queryDate ? false : true}
           className='ml-4'
           onClick={() => {
-            setSearchParams((prev) => {
-              if (queryDate) {
+            if (queryDate) {
+              setSearchParams((prev) => {
                 const date: string = queryDate.toLocaleDateString('en-CA');
-                prev.set('date', date);
-                prev.set('collection', imageCollection.toLowerCase());
-              }
-              return prev;
-            });
+                const params = new URLSearchParams(prev);
+                params.set('date', date);
+                params.set('collection', imageCollection.toLowerCase());
+                return params;
+              });
+            }
           }}
         />
       </div>

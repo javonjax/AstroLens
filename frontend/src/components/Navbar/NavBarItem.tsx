@@ -5,7 +5,7 @@ export interface NavBarItemProps {
   link: string;
 }
 
-const NavBarItem = ({ text, link }: NavBarItemProps) => {
+const NavBarItem = ({ text, link }: NavBarItemProps): React.JSX.Element => {
   return (
     <NavLink
       to={link}

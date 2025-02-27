@@ -25,9 +25,9 @@ router.get(
         request.query as Record<string, string>,
       ).toString();
 
-      const url: string = `${NASA_LIBRARY_URL}?${queryParams}`;
+      const url: string = `${NASA_LIBRARY_URL}?${queryParams}&page_size=99`;
       const res: globalThis.Response = await fetch(url);
-      console.log(`${NASA_LIBRARY_URL}?${queryParams}`);
+
       if (!res.ok) {
         throw new Error(
           `Internal server error ${res.status}: ${res.statusText}`,
@@ -35,14 +35,27 @@ router.get(
       }
 
       const responseData = await res.json();
-      const multimediaData: LibraryData[] = responseData?.collection?.items;
-      const nextPage = responseData?.collection?.links[0]?.href;
 
+      const multimediaData: LibraryData[] = responseData?.collection?.items;
+      const pageLinks: Record<'rel' | 'prompt' | 'href', string>[] | undefined =
+        responseData?.collection?.links;
+      const prevPage: string | undefined = pageLinks?.find(
+        (element) => element['rel'] === 'prev',
+      )?.href;
+      const nextPage: string | undefined = pageLinks?.find(
+        (element) => element['rel'] === 'next',
+      )?.href;
       const requiredKeys: string[] = ['data', 'href', 'links'];
       const validObjects: LibraryData[] = multimediaData.filter((item) =>
         requiredKeys.every((key) => key in item),
       );
-      response.status(200).json(validObjects);
+
+      response.status(200).json({
+        items: validObjects,
+        next: nextPage || undefined,
+        prev: prevPage || undefined,
+      });
+      return;
     } catch (error) {
       if (error instanceof Error) {
         response.status(500).json({ message: error.message });

@@ -13,7 +13,7 @@ const EpicContent = ({
   imageData,
   setEmbla,
   currentIndex,
-}: EpicContentProps) => {
+}: EpicContentProps): React.JSX.Element => {
   return (
     <div className='flex w-full flex-col items-center justify-around border-2 border-white'>
       {imageData?.length ? (

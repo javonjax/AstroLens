@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion';
 import { ChevronsDown } from 'lucide-react';
 
-const Hero = () => {
+const Hero = (): React.JSX.Element => {
   return (
     <>
       <div className='relative mb-4 flex h-[95vh] w-full flex-col items-center'>

@@ -22,7 +22,7 @@ const cards: { [key: string]: string }[] = [
   },
 ];
 
-const Homepage = () => {
+const Homepage = (): React.JSX.Element => {
   return (
     <>
       <Hero />

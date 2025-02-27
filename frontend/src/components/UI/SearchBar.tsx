@@ -18,7 +18,7 @@ const SearchBar = ({
   inputClassname,
   buttonClassname,
   disabled,
-}: SearchBarProps) => {
+}: SearchBarProps): React.JSX.Element => {
   return (
     <form
       className='m-4 flex w-full items-center justify-center'

@@ -8,7 +8,10 @@ export interface EpicDataProps {
   currentIndex: number;
 }
 
-const EpicData = ({ imageData, currentIndex }: EpicDataProps) => {
+const EpicData = ({
+  imageData,
+  currentIndex,
+}: EpicDataProps): React.JSX.Element => {
   const dscovrCoordinates: Coordinates | undefined =
     imageData?.[currentIndex]?.dscovr_j2000_position;
   const sunCoordinates: Coordinates | undefined =

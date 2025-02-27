@@ -8,7 +8,7 @@ import HamburgerMenuItem from './HamburgerMenuItem';
 import HamburgerMenuTarget from './HamburgerMenuTarget';
 import { useEffect, useState } from 'react';
 
-const Navbar = () => {
+const Navbar = (): React.JSX.Element => {
   const [hamburgerMenuOpen, setHamburgerMenuOpen] = useState<boolean>();
 
   // Closes the hamburger menu dropdown when the menu target is not on the screen.

@@ -20,7 +20,7 @@ const NavCard = ({
 }: NavCardProps): React.JSX.Element => {
   return (
     <RevealOnScroll side={side} delay={delay}>
-      <div className={`relative h-[33vh] w-[33vh]`}>
+      <div className={`relative h-[30vh] w-[33vh]`}>
         <>
           <img
             src={`../${imgName}`}
