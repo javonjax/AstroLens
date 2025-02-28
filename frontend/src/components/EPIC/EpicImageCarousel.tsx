@@ -32,7 +32,7 @@ const EpicImageCarousel = ({
             >
               <a className='mb-8' href={item.imageSourceUrl} target='_blank'>
                 <img
-                  className='h-auto max-w-full'
+                  className='h-full max-w-full'
                   src={item.imageSourceUrl}
                 ></img>
               </a>

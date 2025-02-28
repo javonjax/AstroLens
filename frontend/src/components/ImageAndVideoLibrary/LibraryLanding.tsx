@@ -1,5 +1,7 @@
 import { useState } from 'react';
-import LibrarySearch, { MediaType } from './LibrarySearchComponents.tsx';
+import LibrarySearchComponents, {
+  MediaType,
+} from './LibrarySearchComponents.tsx';
 import LibraryContent from './LibraryContent.tsx';
 import { useSearchParams } from 'react-router-dom';
 import { LibraryData } from '@backend/MultimediaLibrary/types.ts';
@@ -39,7 +41,7 @@ const LibraryLanding = (): React.JSX.Element => {
     return data;
   };
 
-  const { data, isFetching, isLoading } = useQuery({
+  const { data, isLoading } = useQuery({
     queryKey: ['fetchLibraryData', searchParams.toString()],
     queryFn: fetchLibraryData,
     enabled: searchParams.toString() !== '',
@@ -56,35 +58,34 @@ const LibraryLanding = (): React.JSX.Element => {
 
   const onSearch = (e: React.FormEvent, searchTerm?: string) => {
     e.preventDefault();
-    if (!isFetching) {
-      const mediaTypes: string = Object.keys(queryMediaTypes)
-        .filter((key) => queryMediaTypes[key as MediaType])
-        .join(',');
 
-      // Fill in the search bar if a suggested term button is used for searching.
-      if (searchTerm) {
-        setInputValue(searchTerm);
-      }
+    const mediaTypes: string = Object.keys(queryMediaTypes)
+      .filter((key) => queryMediaTypes[key as MediaType])
+      .join(',');
 
-      //When search params update, the useEffect is triggered to fetch data.
-      setSearchParams((prev) => {
-        const params = new URLSearchParams(prev);
-        params.set('q', searchTerm ? searchTerm : inputValue);
-        params.set('media_type', mediaTypes);
-        params.set('year_start', String(yearRange[0]));
-        params.set('year_end', String(yearRange[1]));
-        params.set('page', '1');
-        return params;
-      });
+    // Fill in the search bar if a suggested term button is used for searching.
+    if (searchTerm) {
+      setInputValue(searchTerm);
     }
+
+    //When search params update, the useEffect is triggered to fetch data.
+    setSearchParams((prev) => {
+      const params = new URLSearchParams(prev);
+      params.set('q', searchTerm ? searchTerm : inputValue);
+      params.set('media_type', mediaTypes);
+      params.set('year_start', String(yearRange[0]));
+      params.set('year_end', String(yearRange[1]));
+      params.set('page', '1');
+      return params;
+    });
   };
 
   return (
     <div className='flex h-full w-full max-w-7xl flex-col items-center px-4'>
-      <h1 className='m-2 text-center text-5xl'>
+      <h1 className='my-2 text-center text-5xl'>
         Explore the NASA multimedia library.
       </h1>
-      <LibrarySearch
+      <LibrarySearchComponents
         inputValue={inputValue}
         setInputValue={setInputValue}
         yearRange={yearRange}

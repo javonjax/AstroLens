@@ -1,5 +1,5 @@
 import { NavLink } from 'react-router-dom';
-import RevealOnScroll from '../Animations/RevealOnScroll';
+import RevealOnScroll from './Animations/RevealOnScroll';
 
 export interface NavCardProps {
   title: string;

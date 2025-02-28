@@ -8,14 +8,14 @@ const LibraryGridItem = ({ item }: LibraryGridItemProps): React.JSX.Element => {
   return (
     <div
       key={item?.data[0].nasa_id}
-      className='h-full max-h-[300px] cursor-pointer'
+      className='h-full max-h-[300px] cursor-pointer overflow-hidden rounded-lg border-2 border-white'
     >
       <img
         alt={item?.data[0].title}
         className='h-[80%] w-full object-fill'
         src={item?.links[0].href}
       />
-      <h2 className='break-words text-center'>{item?.data[0].title}</h2>
+      <h2 className='break-words p-1 text-center'>{item?.data[0].title}</h2>
     </div>
   );
 };

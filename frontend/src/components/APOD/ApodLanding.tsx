@@ -1,5 +1,8 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import ApodContent from './ApodContent';
+import { useSearchParams } from 'react-router-dom';
+import { useQuery } from '@tanstack/react-query';
+import ApodSearchComponents from './ApodSearchComponents';
 
 export interface Apod {
   title: string;
@@ -14,26 +17,34 @@ export interface Apod {
 const BACKEND_APOD_API_URL: string = import.meta.env.VITE_BACKEND_APOD_URL;
 
 const ApodLanding = (): React.JSX.Element => {
-  const [apod, setApod] = useState<Apod>();
+  const [searchParams, setSearchParams] = useSearchParams();
+  const [queryDate, setQueryDate] = useState<Date | null>(null);
 
-  const fetchAPOD = async (date: Date | null = null): Promise<void> => {
-    let url: string = BACKEND_APOD_API_URL;
-    if (date) {
-      const queryDate: string = date.toLocaleDateString('en-CA');
-      url += `?date=${queryDate}`;
+  const fetchAPOD = async (): Promise<Apod> => {
+    let url: string = `${BACKEND_APOD_API_URL}`;
+    if (searchParams.get('date')) {
+      url += `?${searchParams.toString()}`;
     }
     const res: globalThis.Response = await fetch(url);
-    const apodData: Apod = await res.json();
-    setApod(apodData);
+    const data: Apod = await res.json();
+    return data;
   };
 
-  useEffect(() => {
-    fetchAPOD();
-  }, []);
+  const { data, isLoading } = useQuery({
+    queryKey: ['fetchAPOD', searchParams.toString()],
+    queryFn: fetchAPOD,
+    retry: 1,
+  });
 
   return (
     <div className='flex h-full w-full flex-col items-center px-4'>
-      {apod && <ApodContent apod={apod} fetchAPOD={fetchAPOD} />}
+      <h1 className='m-2 text-center text-5xl'>Atronomy Picture of the Day</h1>
+      <ApodSearchComponents
+        queryDate={queryDate}
+        setQueryDate={setQueryDate}
+        setSearchParams={setSearchParams}
+      />
+      <ApodContent apod={data} isLoading={isLoading} />
     </div>
   );
 };

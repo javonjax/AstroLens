@@ -21,7 +21,7 @@ const SearchBar = ({
 }: SearchBarProps): React.JSX.Element => {
   return (
     <form
-      className='m-4 flex w-full items-center justify-center'
+      className='flex w-full items-center justify-center'
       onSubmit={onSearch}
     >
       <Input

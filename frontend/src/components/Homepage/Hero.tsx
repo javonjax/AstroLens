@@ -35,10 +35,10 @@ const Hero = (): React.JSX.Element => {
                 hidden: { opacity: 0 },
               }}
             >
-              High quality images and videos
+              High quality images, videos, and audio.
             </motion.h2>
             <motion.h2
-              className='text-center'
+              className='text-center md:text-xl'
               initial='hidden'
               whileInView='visible'
               viewport={{ once: true }}

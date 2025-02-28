@@ -1,7 +1,7 @@
 import { Checkbox, RangeSlider } from '@mantine/core';
 import SearchBar from '../UI/SearchBar';
 
-export interface LibrarySearchProps {
+export interface LibrarySearchComponentsProps {
   inputValue: string;
   setInputValue: React.Dispatch<React.SetStateAction<string>>;
   yearRange: [number, number];
@@ -13,7 +13,7 @@ export interface LibrarySearchProps {
 export type MediaType = 'image' | 'video' | 'audio';
 const mediaTypes: MediaType[] = ['image', 'video', 'audio'];
 
-const LibrarySearch = ({
+const LibrarySearchComponents = ({
   inputValue,
   setInputValue,
   yearRange,
@@ -21,11 +21,11 @@ const LibrarySearch = ({
   onSearch,
   queryMediaTypes,
   handleCheck,
-}: LibrarySearchProps): React.JSX.Element => {
+}: LibrarySearchComponentsProps): React.JSX.Element => {
   const currentYear: number = new Date().getFullYear();
 
   return (
-    <div className='m-2 flex w-full flex-col items-center justify-center'>
+    <div className='my-4 flex w-full flex-col items-center justify-center'>
       <SearchBar
         value={inputValue}
         setValue={setInputValue}
@@ -37,7 +37,7 @@ const LibrarySearch = ({
           )
         }
       />
-      <div className='flex w-full justify-center'>
+      <div className='my-2 flex w-full justify-center'>
         {mediaTypes.map((type) => (
           <Checkbox
             styles={{
@@ -56,7 +56,7 @@ const LibrarySearch = ({
           />
         ))}
       </div>
-      <div className='mt-4 w-[400px]'>
+      <div className='mt-4 w-full max-w-[396px]'>
         <RangeSlider
           value={yearRange}
           onChange={setYearRange}
@@ -75,4 +75,4 @@ const LibrarySearch = ({
   );
 };
 
-export default LibrarySearch;
+export default LibrarySearchComponents;

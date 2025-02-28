@@ -20,8 +20,7 @@ const EpicData = ({
     imageData?.[currentIndex].lunar_j2000_position;
 
   return (
-    <div className='flex w-full flex-col items-center border-2 border-white py-4'>
-      <h2 className='mx-auto mb-2'>Image Data</h2>
+    <div className='flex w-full flex-col items-center py-4'>
       <div className='my-2 flex items-center justify-center'>
         <label className='mr-4'>Units:</label>
         <Menu>
@@ -46,9 +45,9 @@ const EpicData = ({
           </Menu.Dropdown>
         </Menu>
       </div>
-      <div className='mt-2 flex w-full justify-center'>
-        <div className='flex w-full max-w-[33%] flex-col items-center'>
-          <h3>Earth to DSCOVR: EPIC</h3>
+      <div className='mt-2 flex w-full flex-col items-center justify-center md:flex-row'>
+        <div className='my-2 flex w-full max-w-[60%] flex-col items-center md:max-w-[33%]'>
+          <h3 className='text-center'>Earth to DSCOVR: EPIC</h3>
           <div className='flex w-[100px] justify-around'>
             <Earth /> <ArrowRight /> <Satellite />
           </div>
@@ -65,7 +64,7 @@ const EpicData = ({
             </div>
           )}
         </div>
-        <div className='flex w-full max-w-[33%] flex-col items-center'>
+        <div className='my-2 flex w-full max-w-[60%] flex-col items-center md:max-w-[33%]'>
           <h3 className='text-center'>Earth to the Sun</h3>
           <div className='flex w-[100px] justify-around'>
             <Earth /> <ArrowRight /> <Sun />
@@ -83,8 +82,8 @@ const EpicData = ({
             </div>
           )}
         </div>
-        <div className='flex w-full max-w-[33%] flex-col items-center'>
-          <h3>Earth to the Moon</h3>
+        <div className='my-2 flex w-full max-w-[60%] flex-col items-center md:max-w-[33%]'>
+          <h3 className='text-center'>Earth to the Moon</h3>
           <div className='flex w-[100px] justify-around'>
             <Earth /> <ArrowRight /> <Moon />
           </div>

@@ -29,7 +29,7 @@ const EpicLanding = (): React.JSX.Element => {
     return data;
   };
 
-  const { data: imageData } = useQuery({
+  const { data: imageData, isLoading } = useQuery({
     queryKey: ['fetchEpicImageData', searchParams.toString()],
     queryFn: fetchEpicImageData,
   });
@@ -72,21 +72,8 @@ const EpicLanding = (): React.JSX.Element => {
         imageData={imageData}
         setEmbla={setEmbla}
         currentIndex={currentIndex}
+        isLoading={isLoading}
       />
-      <button
-        onClick={() =>
-          setSearchParams((prev) => {
-            const params = new URLSearchParams(prev);
-            params.set('q', 'hello');
-            params.set('date', Math.random().toString());
-
-            return params;
-          })
-        }
-      >
-        {' '}
-        test button
-      </button>
     </div>
   );
 };

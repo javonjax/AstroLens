@@ -3,6 +3,7 @@ import LibraryGrid from './LibraryGrid';
 import { Loader } from '@mantine/core';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { SetURLSearchParams } from 'react-router-dom';
+import { motion } from 'framer-motion';
 
 export interface LibraryContentProps {
   searchParams: URLSearchParams;
@@ -77,6 +78,7 @@ const LibraryContent = ({
             </div>
           </div>
         )}
+
         {content && !content.length && (
           <>
             <div>No results found for "{searchParams.get('q')}".</div>
@@ -98,8 +100,19 @@ const LibraryContent = ({
             </div>
           </>
         )}
+
         {content && content.length > 0 && (
-          <>
+          <motion.div
+            className='flex h-full w-full flex-col items-center'
+            initial='hidden'
+            whileInView='visible'
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.5 }}
+            variants={{
+              visible: { opacity: 1 },
+              hidden: { opacity: 0 },
+            }}
+          >
             <h2 className='my-2 text-center text-2xl'>
               Showing results for "{searchParams.get('q')}"
             </h2>
@@ -137,7 +150,7 @@ const LibraryContent = ({
                 <ChevronRight size={24} />
               </button>
             </div>
-          </>
+          </motion.div>
         )}
       </div>
     </div>
