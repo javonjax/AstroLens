@@ -2,7 +2,7 @@ import { Button, Menu } from '@mantine/core';
 import DatePicker from '../UI/DatePicker';
 import SearchButton from '../UI/SearchButton';
 import { SetURLSearchParams } from 'react-router-dom';
-import { ImageCollection } from './EpicLanding';
+import { ImageCollection } from './EpicPage';
 
 export interface EpicSearchComponentsProps {
   queryDate: Date | null;

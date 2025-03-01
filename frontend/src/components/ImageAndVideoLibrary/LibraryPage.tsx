@@ -16,7 +16,7 @@ export interface LibraryAPIResponse {
 // Environment variables.
 const BACKEND_LIB_URL = import.meta.env.VITE_BACKEND_LIBRARY_URL;
 
-const LibraryLanding = (): React.JSX.Element => {
+const LibraryPage = (): React.JSX.Element => {
   const [searchParams, setSearchParams] = useSearchParams();
   const [inputValue, setInputValue] = useState<string>(''); // Search bar input.
   const [yearRange, setYearRange] = useState<[number, number]>([
@@ -107,4 +107,4 @@ const LibraryLanding = (): React.JSX.Element => {
   );
 };
 
-export default LibraryLanding;
+export default LibraryPage;

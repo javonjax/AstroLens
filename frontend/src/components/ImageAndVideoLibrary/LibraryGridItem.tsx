@@ -5,11 +5,9 @@ export interface LibraryGridItemProps {
 }
 
 const LibraryGridItem = ({ item }: LibraryGridItemProps): React.JSX.Element => {
+  console.log(item);
   return (
-    <div
-      key={item?.data[0].nasa_id}
-      className='h-full max-h-[300px] cursor-pointer overflow-hidden rounded-lg border-2 border-white'
-    >
+    <div className='duration-250 h-full max-h-[300px] cursor-pointer overflow-hidden rounded-lg border-2 border-white shadow-[0px_0px_8px_2px_rgba(255,255,255,0.36)] transition-shadow hover:shadow-[0px_0px_8px_8px_rgba(255,255,255,0.36)]'>
       <img
         alt={item?.data[0].title}
         className='h-[80%] w-full object-fill'

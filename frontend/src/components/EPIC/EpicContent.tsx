@@ -34,13 +34,14 @@ const EpicContent = ({
           viewport={{ once: true }}
           transition={{ duration: 0.5, delay: 0.5 }}
           variants={{
-            visible: { opacity: 1 },
-            hidden: { opacity: 0 },
+            visible: { opacity: 1, y: 0 },
+            hidden: { opacity: 0, y: -50 },
           }}
         >
           <EpicImageCarousel imageData={imageData} setEmbla={setEmbla} />
-          <div className='mt-4 h-full w-full rounded-lg border-2 border-white'>
+          <div className='mt-4 h-full w-full rounded-lg border-2 border-white shadow-[0px_0px_8px_2px_rgba(255,255,255,0.36)]'>
             <h1 className='my-2 text-center text-2xl'>
+              Images from{' '}
               {new Date(imageData[0].date).toLocaleDateString('en-US', {
                 month: 'short',
                 day: 'numeric',
@@ -55,7 +56,6 @@ const EpicContent = ({
           <div className='text-center text-3xl'>
             No images found from that date.
           </div>
-
           <ImageOff size={64} className='mt-4' />
         </div>
       )}

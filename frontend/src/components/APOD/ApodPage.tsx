@@ -16,7 +16,7 @@ export interface Apod {
 
 const BACKEND_APOD_API_URL: string = import.meta.env.VITE_BACKEND_APOD_URL;
 
-const ApodLanding = (): React.JSX.Element => {
+const ApodPage = (): React.JSX.Element => {
   const [searchParams, setSearchParams] = useSearchParams();
   const [queryDate, setQueryDate] = useState<Date | null>(null);
 
@@ -49,4 +49,4 @@ const ApodLanding = (): React.JSX.Element => {
   );
 };
 
-export default ApodLanding;
+export default ApodPage;

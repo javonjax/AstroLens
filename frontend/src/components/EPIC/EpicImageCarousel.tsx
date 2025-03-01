@@ -21,6 +21,7 @@ const EpicImageCarousel = ({
         slideSize='90%'
         style={{ flex: 1 }}
         align='center'
+        className='overflow-hidden rounded-lg border-2 border-white shadow-[0px_0px_8px_2px_rgba(255,255,255,0.36)]'
       >
         {imageData.map((item) => {
           return (

@@ -4,12 +4,12 @@ import { ChevronsDown } from 'lucide-react';
 const Hero = (): React.JSX.Element => {
   return (
     <>
-      <div className='relative mb-4 flex h-[95vh] w-full flex-col items-center'>
+      <div className='relative mb-2 flex h-[80vh] min-h-[400px] w-full flex-col items-center overflow-hidden'>
         <img
           src='/cosmos.jpg'
-          className='h-full min-h-[300px] w-full object-fill'
+          className='reelative h-full w-full object-fill'
         ></img>
-        <div className='translate-[-50%] absolute left-[50%] top-[40%] transform'>
+        <div className='translate-[-50%] absolute left-[50%] top-[50%] transform'>
           <div className='flex flex-col items-center'>
             <motion.h1
               className='text-center text-4xl md:text-5xl xl:text-6xl'
@@ -29,7 +29,7 @@ const Hero = (): React.JSX.Element => {
               initial='hidden'
               whileInView='visible'
               viewport={{ once: true }}
-              transition={{ duration: 1, delay: 0.75 }}
+              transition={{ duration: 1, delay: 0.5 }}
               variants={{
                 visible: { opacity: 1 },
                 hidden: { opacity: 0 },
@@ -42,7 +42,7 @@ const Hero = (): React.JSX.Element => {
               initial='hidden'
               whileInView='visible'
               viewport={{ once: true }}
-              transition={{ duration: 1, delay: 1.5 }}
+              transition={{ duration: 1, delay: 1 }}
               variants={{
                 visible: { opacity: 1 },
                 hidden: { opacity: 0 },
@@ -57,18 +57,26 @@ const Hero = (): React.JSX.Element => {
                 NASA APIs
               </a>
             </motion.h2>
+            <motion.button
+              className='mt-2 flex cursor-pointer flex-col items-center'
+              onClick={() => {
+                const element = document.getElementById('homepage-nav-cards');
+                element?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+              }}
+              initial='hidden'
+              whileInView='visible'
+              viewport={{ once: true }}
+              transition={{ duration: 1, delay: 1.5 }}
+              variants={{
+                visible: { opacity: 1 },
+                hidden: { opacity: 0 },
+              }}
+            >
+              <h2 className='mb-4 md:text-xl'>Get Started</h2>
+              <ChevronsDown size={64} className='m-0 animate-bounce' />
+            </motion.button>
           </div>
         </div>
-        <button
-          className='m-8 flex cursor-pointer flex-col items-center'
-          onClick={() => {
-            const element = document.getElementById('homepage-nav-cards');
-            element?.scrollIntoView({ behavior: 'smooth', block: 'start' });
-          }}
-        >
-          <p className='mb-4'>Get Started</p>
-          <ChevronsDown size={72} className='animate-bounce' />
-        </button>
       </div>
     </>
   );

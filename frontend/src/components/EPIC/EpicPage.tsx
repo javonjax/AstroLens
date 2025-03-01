@@ -10,7 +10,7 @@ const BACKEND_EPIC_URL = import.meta.env.VITE_BACKEND_EPIC_URL;
 
 export type ImageCollection = 'Natural' | 'Enhanced';
 
-const EpicLanding = (): React.JSX.Element => {
+const EpicPage = (): React.JSX.Element => {
   const [queryDate, setQueryDate] = useState<Date | null>(null); // Querying the API with no date param returns the most recent images.
   const [imageCollection, setImageCollection] =
     useState<ImageCollection>('Natural');
@@ -78,4 +78,4 @@ const EpicLanding = (): React.JSX.Element => {
   );
 };
 
-export default EpicLanding;
+export default EpicPage;

@@ -14,8 +14,8 @@ const RevealOnScroll = ({
 }: RevealProps): React.JSX.Element => {
   const revealRef = useRef(null);
   const isInView: boolean = useInView(revealRef, {
-    amount: 'some',
-    // once: true,
+    amount: 0.4,
+    once: true,
     margin: '0px',
   });
   const mainControls = useAnimation();
@@ -30,10 +30,10 @@ const RevealOnScroll = ({
     <motion.div
       ref={revealRef}
       variants={{
-        hidden: { opacity: 0, x: side === 'right' ? 75 : -75 },
+        hidden: { opacity: 0, y: -50 },
         visible: {
           opacity: 1,
-          x: 0,
+          y: 0,
           alignSelf: `${side === 'right' ? 'flex-end' : ''}`,
         },
       }}

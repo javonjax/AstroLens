@@ -1,7 +1,8 @@
 import { Coordinates, EpicAPIResponse } from '@backend/EPIC/types';
-import { calculateDistance } from './utils';
+import { calculateDistance, UnitOfMeasurement } from './utils';
 import { ArrowRight, Earth, Moon, Satellite, Sun } from 'lucide-react';
 import { Button, Menu } from '@mantine/core';
+import { useState } from 'react';
 
 export interface EpicDataProps {
   imageData: EpicAPIResponse | undefined;
@@ -12,6 +13,7 @@ const EpicData = ({
   imageData,
   currentIndex,
 }: EpicDataProps): React.JSX.Element => {
+  const [units, setUnits] = useState<UnitOfMeasurement>('Kilometers');
   const dscovrCoordinates: Coordinates | undefined =
     imageData?.[currentIndex]?.dscovr_j2000_position;
   const sunCoordinates: Coordinates | undefined =
@@ -20,7 +22,7 @@ const EpicData = ({
     imageData?.[currentIndex].lunar_j2000_position;
 
   return (
-    <div className='flex w-full flex-col items-center py-4'>
+    <div className='flex w-full flex-col items-center'>
       <div className='my-2 flex items-center justify-center'>
         <label className='mr-4'>Units:</label>
         <Menu>
@@ -32,35 +34,44 @@ const EpicData = ({
                 },
               }}
             >
-              yo
+              {units}
             </Button>
           </Menu.Target>
           <Menu.Dropdown>
-            <Menu.Item component='button' onClick={() => {}}>
+            <Menu.Item
+              component='button'
+              onClick={() => {
+                setUnits('Kilometers');
+              }}
+            >
               Kilometers
             </Menu.Item>
-            <Menu.Item component='button' onClick={() => {}}>
+            <Menu.Item
+              component='button'
+              onClick={() => {
+                setUnits('Miles');
+              }}
+            >
               Miles
             </Menu.Item>
           </Menu.Dropdown>
         </Menu>
       </div>
-      <div className='mt-2 flex w-full flex-col items-center justify-center md:flex-row'>
+      <div className='flex w-full flex-col items-center justify-center md:flex-row'>
         <div className='my-2 flex w-full max-w-[60%] flex-col items-center md:max-w-[33%]'>
-          <h3 className='text-center'>Earth to DSCOVR: EPIC</h3>
+          <h3 className='text-center'>Earth to EPIC</h3>
           <div className='flex w-[100px] justify-around'>
             <Earth /> <ArrowRight /> <Satellite />
           </div>
           {dscovrCoordinates && (
             <div>
-              {Math.round(
-                calculateDistance(
-                  dscovrCoordinates?.x,
-                  dscovrCoordinates?.y,
-                  dscovrCoordinates.z,
-                ),
-              ).toLocaleString('en-US')}{' '}
-              km
+              {calculateDistance(
+                dscovrCoordinates.x,
+                dscovrCoordinates.y,
+                dscovrCoordinates.z,
+                units,
+              ).toLocaleString('en-US')}
+              {units === 'Kilometers' ? ' km' : ' mi'}
             </div>
           )}
         </div>
@@ -71,14 +82,13 @@ const EpicData = ({
           </div>
           {sunCoordinates && (
             <div>
-              {Math.round(
-                calculateDistance(
-                  sunCoordinates?.z,
-                  sunCoordinates?.x,
-                  sunCoordinates?.y,
-                ),
-              ).toLocaleString('en-US')}{' '}
-              km
+              {calculateDistance(
+                sunCoordinates.z,
+                sunCoordinates.x,
+                sunCoordinates.y,
+                units,
+              ).toLocaleString('en-US')}
+              {units === 'Kilometers' ? ' km' : ' mi'}
             </div>
           )}
         </div>
@@ -89,14 +99,13 @@ const EpicData = ({
           </div>
           {moonCoordinates && (
             <div>
-              {Math.round(
-                calculateDistance(
-                  moonCoordinates?.z,
-                  moonCoordinates?.x,
-                  moonCoordinates?.y,
-                ),
-              ).toLocaleString('en-US')}{' '}
-              km
+              {calculateDistance(
+                moonCoordinates.z,
+                moonCoordinates.x,
+                moonCoordinates.y,
+                units,
+              ).toLocaleString('en-US')}
+              {units === 'Kilometers' ? ' km' : ' mi'}
             </div>
           )}
         </div>

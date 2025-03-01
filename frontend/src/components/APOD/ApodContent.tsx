@@ -1,5 +1,5 @@
 import { Loader } from '@mantine/core';
-import { Apod } from './ApodLanding';
+import { Apod } from './ApodPage';
 import { motion } from 'framer-motion';
 
 export interface ApodContentProps {
@@ -35,34 +35,34 @@ const ApodContent = ({
           viewport={{ once: true }}
           transition={{ duration: 0.5, delay: 0.5 }}
           variants={{
-            visible: { opacity: 1 },
-            hidden: { opacity: 0 },
+            visible: { opacity: 1, y: 0 },
+            hidden: { opacity: 0, y: -50 },
           }}
         >
-          <h1 className='mb-2 text-center text-5xl'>{formatDate(apod.date)}</h1>
+          <h1 className='mb-2 text-center text-3xl'>{formatDate(apod.date)}</h1>
           <div className='my-2 flex w-full max-w-7xl flex-col items-center text-center'>
             {apod.media_type === 'image' && (
               <a
-                className='max-h-[600px] max-w-full'
+                className='m-4 max-h-[600px] max-w-full overflow-hidden rounded-lg border-2 border-white shadow-[0px_0px_8px_2px_rgba(255,255,255,0.36)]'
                 target='_blank'
                 href={apod.hdurl}
               >
                 <img src={apod.url} className='h-full w-full object-fill'></img>
               </a>
             )}
-            {apod.media_type === 'video' && (
+            {apod.media_type !== 'image' && (
               <iframe
-                className='h-[600px] w-full'
+                className='m-4 h-[600px] w-full rounded-lg border-2 border-white shadow-[0px_0px_8px_2px_rgba(255,255,255,0.36)]'
                 src={apod.url}
                 title='Astrology Video of the Day'
                 allowFullScreen={true}
               />
             )}
-            <div className='mb-2 mt-4 flex w-full flex-col items-center gap-y-2 rounded-lg border-2 border-white px-4'>
+            <div className='mb-2 mt-4 flex w-full flex-col items-center gap-y-2 rounded-lg border-2 border-white p-4 shadow-[0px_0px_8px_2px_rgba(255,255,255,0.36)]'>
               <h2 className='text-3xl'>{apod.title}</h2>
-              <h2 className='text-xl'>
-                {apod.copyright ? `Image Credit: ${apod.copyright}` : ''}
-              </h2>
+              {apod.copyright && (
+                <h2 className='text-xl'>{`Image Credit: ${apod.copyright}`}</h2>
+              )}
               <p>{apod.explanation}</p>
             </div>
           </div>
