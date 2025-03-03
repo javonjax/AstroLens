@@ -26,7 +26,7 @@ const EpicContent = ({
           <Loader size={50} type='dots' />
         </div>
       )}
-      {imageData?.length ? (
+      {imageData?.length && !isLoading ? (
         <motion.div
           className='flex h-full w-full flex-col items-center'
           initial='hidden'
@@ -40,14 +40,6 @@ const EpicContent = ({
         >
           <EpicImageCarousel imageData={imageData} setEmbla={setEmbla} />
           <div className='mt-4 h-full w-full rounded-lg border-2 border-white shadow-[0px_0px_8px_2px_rgba(255,255,255,0.36)]'>
-            <h1 className='my-2 text-center text-2xl'>
-              Images from{' '}
-              {new Date(imageData[0].date).toLocaleDateString('en-US', {
-                month: 'short',
-                day: 'numeric',
-                year: 'numeric',
-              })}
-            </h1>
             <EpicData imageData={imageData} currentIndex={currentIndex} />
           </div>
         </motion.div>

@@ -13,7 +13,7 @@ export interface LibraryItem {
   nasa_id: string;
   title: string;
   media_type: string;
-  photographer?: string;
+  photographer: string;
 }
 
 export interface ImageLink {

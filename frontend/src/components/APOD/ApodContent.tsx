@@ -43,20 +43,25 @@ const ApodContent = ({
           <div className='my-2 flex w-full max-w-7xl flex-col items-center text-center'>
             {apod.media_type === 'image' && (
               <a
-                className='m-4 max-h-[600px] max-w-full overflow-hidden rounded-lg border-2 border-white shadow-[0px_0px_8px_2px_rgba(255,255,255,0.36)]'
+                className='max-h-[600px] max-w-full overflow-hidden rounded-lg border-2 border-white shadow-[0px_0px_8px_2px_rgba(255,255,255,0.36)]'
                 target='_blank'
                 href={apod.hdurl}
               >
-                <img src={apod.url} className='h-full w-full object-fill'></img>
+                <img
+                  src={apod.url}
+                  className='h-full w-full object-contain'
+                ></img>
               </a>
             )}
-            {apod.media_type !== 'image' && (
-              <iframe
-                className='m-4 h-[600px] w-full rounded-lg border-2 border-white shadow-[0px_0px_8px_2px_rgba(255,255,255,0.36)]'
-                src={apod.url}
-                title='Astrology Video of the Day'
-                allowFullScreen={true}
-              />
+            {apod.media_type === 'video' && (
+              <div className='h-full max-h-[700px] w-full overflow-hidden rounded-lg border-2 border-white shadow-[0px_0px_8px_2px_rgba(255,255,255,0.36)]'>
+                <iframe
+                  className='aspect-video h-full w-full'
+                  src={apod.url}
+                  title='Astrology Video of the Day'
+                  allowFullScreen={true}
+                />
+              </div>
             )}
             <div className='mb-2 mt-4 flex w-full flex-col items-center gap-y-2 rounded-lg border-2 border-white p-4 shadow-[0px_0px_8px_2px_rgba(255,255,255,0.36)]'>
               <h2 className='text-3xl'>{apod.title}</h2>

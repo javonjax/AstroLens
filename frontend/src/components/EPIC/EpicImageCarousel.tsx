@@ -12,7 +12,14 @@ const EpicImageCarousel = ({
   setEmbla,
 }: EpicImageCarouselProps): React.JSX.Element => {
   return (
-    <div className='flex h-full max-h-[800px] w-full max-w-[800px] justify-center'>
+    <div className='flex h-full max-h-[800px] w-full max-w-[800px] flex-col justify-center rounded-lg border-2 border-white shadow-[0px_0px_8px_2px_rgba(255,255,255,0.36)]'>
+      <h1 className='my-2 text-center text-3xl'>
+        {new Date(imageData[0].date).toLocaleDateString('en-US', {
+          month: 'short',
+          day: 'numeric',
+          year: 'numeric',
+        })}
+      </h1>
       <Carousel
         getEmblaApi={setEmbla}
         loop
@@ -21,16 +28,11 @@ const EpicImageCarousel = ({
         slideSize='90%'
         style={{ flex: 1 }}
         align='center'
-        className='overflow-hidden rounded-lg border-2 border-white shadow-[0px_0px_8px_2px_rgba(255,255,255,0.36)]'
+        className='overflow-hidden rounded-lg'
       >
         {imageData.map((item) => {
           return (
-            <Carousel.Slide
-              key={`${item.image}`}
-              styles={{
-                slide: { zIndex: '-10' },
-              }}
-            >
+            <Carousel.Slide key={`${item.image}`} className='-z-10'>
               <a className='mb-8' href={item.imageSourceUrl} target='_blank'>
                 <img
                   className='h-full max-w-full'

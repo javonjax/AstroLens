@@ -23,6 +23,7 @@ const EpicData = ({
 
   return (
     <div className='flex w-full flex-col items-center'>
+      <h1 className='my-2 text-center text-3xl'>Image Data</h1>
       <div className='my-2 flex items-center justify-center'>
         <label className='mr-4'>Units:</label>
         <Menu>

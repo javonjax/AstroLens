@@ -34,6 +34,7 @@ router.get(
       }
 
       const responseData = await res.json();
+      console.log(responseData);
       response.status(200).json(responseData);
     } catch (error) {
       if (error instanceof Error) {

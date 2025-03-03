@@ -41,17 +41,6 @@ const LibraryContent = ({
   next,
   prev,
 }: LibraryContentProps): React.JSX.Element => {
-  console.log(content?.length);
-  if (isLoading) {
-    return (
-      <div className='flex h-full w-full max-w-7xl flex-col items-center'>
-        <div className='flex h-full w-full items-center justify-center'>
-          <Loader size={50} type='dots' />
-        </div>
-      </div>
-    );
-  }
-
   return (
     <div className='flex h-full w-full max-w-7xl flex-col items-center'>
       {isLoading && (
@@ -59,8 +48,8 @@ const LibraryContent = ({
           <Loader size={50} type='dots' />
         </div>
       )}
-      <div className='m-2 flex flex-col items-center'>
-        {content === undefined && (
+      <div className='m-2 flex w-full flex-col items-center'>
+        {content === undefined && !isLoading && (
           <div className='flex flex-col items-center'>
             Try these popular search terms.
             <div className='flex items-center'>
@@ -117,7 +106,9 @@ const LibraryContent = ({
               Showing results for "{searchParams.get('q')}"
             </h2>
             <LibraryGrid content={content} />
-            <div className='mt-2 flex items-end justify-center'>
+            <div
+              className={`mt-2 flex items-end justify-center ${prev || next ? 'block' : 'invisible'}`}
+            >
               <button
                 onClick={() => {
                   if (searchParams.get('page')) {

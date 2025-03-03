@@ -35,7 +35,6 @@ router.get(
       }
 
       const responseData = await res.json();
-
       const multimediaData: LibraryData[] = responseData?.collection?.items;
       const pageLinks: Record<'rel' | 'prompt' | 'href', string>[] | undefined =
         responseData?.collection?.links;
@@ -45,7 +44,7 @@ router.get(
       const nextPage: string | undefined = pageLinks?.find(
         (element) => element['rel'] === 'next',
       )?.href;
-      const requiredKeys: string[] = ['data', 'href', 'links'];
+      const requiredKeys: string[] = ['data', 'href'];
       const validObjects: LibraryData[] = multimediaData.filter((item) =>
         requiredKeys.every((key) => key in item),
       );

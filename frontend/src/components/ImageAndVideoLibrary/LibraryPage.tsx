@@ -14,7 +14,7 @@ export interface LibraryAPIResponse {
 }
 
 // Environment variables.
-const BACKEND_LIB_URL = import.meta.env.VITE_BACKEND_LIBRARY_URL;
+const BACKEND_LIB_URL: string = import.meta.env.VITE_BACKEND_LIBRARY_URL;
 
 const LibraryPage = (): React.JSX.Element => {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -34,7 +34,7 @@ const LibraryPage = (): React.JSX.Element => {
   });
 
   // Query function.
-  const fetchLibraryData = async (): Promise<LibraryAPIResponse> => {
+  const fetchLibraryItems = async (): Promise<LibraryAPIResponse> => {
     const url: string = `${BACKEND_LIB_URL}?${searchParams.toString()}`;
     const res: globalThis.Response = await fetch(url);
     const data: LibraryAPIResponse = await res.json();
@@ -42,8 +42,8 @@ const LibraryPage = (): React.JSX.Element => {
   };
 
   const { data, isLoading } = useQuery({
-    queryKey: ['fetchLibraryData', searchParams.toString()],
-    queryFn: fetchLibraryData,
+    queryKey: ['fetchLibraryItems', searchParams.toString()],
+    queryFn: fetchLibraryItems,
     enabled: searchParams.toString() !== '',
     retry: 1,
   });
