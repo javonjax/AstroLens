@@ -13,25 +13,33 @@ export interface LibraryAPIResponse {
   prev?: string;
 }
 
+export type SortingMethod =
+  | 'Date: Oldest to Newest'
+  | 'Date: Newest to Oldest'
+  | 'Title: Alphabetical';
+
 // Environment variables.
 const BACKEND_LIB_URL: string = import.meta.env.VITE_BACKEND_LIBRARY_URL;
 
 const LibraryPage = (): React.JSX.Element => {
   const [searchParams, setSearchParams] = useSearchParams();
-  const [inputValue, setInputValue] = useState<string>(''); // Search bar input.
+  // Search bar input.
+  const [inputValue, setInputValue] = useState<string>('');
+  // Date range slider values.
   const [yearRange, setYearRange] = useState<[number, number]>([
-    // Date range slider values.
     1920,
     new Date().getFullYear(),
   ]);
+  // Media type controlled by checkboxes.
   const [queryMediaTypes, setQueryMediaTypes] = useState<
     Record<MediaType, boolean>
   >({
-    // Media type controlled by checkboxes.
     image: true,
     video: true,
     audio: true,
   });
+  // Grid sorting.
+  const [sortBy, setSortBy] = useState<SortingMethod>('Date: Newest to Oldest');
 
   // Query function.
   const fetchLibraryItems = async (): Promise<LibraryAPIResponse> => {
@@ -102,6 +110,8 @@ const LibraryPage = (): React.JSX.Element => {
         onClickSuggestedTerm={onSearch}
         next={data?.next}
         prev={data?.prev}
+        sortBy={sortBy}
+        setSortBy={setSortBy}
       />
     </div>
   );

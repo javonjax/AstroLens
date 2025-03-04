@@ -1,9 +1,10 @@
 import { LibraryData } from '@backend/MultimediaLibrary/types';
 import LibraryGrid from './LibraryGrid';
-import { Loader } from '@mantine/core';
+import { Button, Loader, Menu } from '@mantine/core';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { SetURLSearchParams } from 'react-router-dom';
 import { motion } from 'framer-motion';
+import { SortingMethod } from './LibraryPage';
 
 export interface LibraryContentProps {
   searchParams: URLSearchParams;
@@ -13,6 +14,8 @@ export interface LibraryContentProps {
   onClickSuggestedTerm: (e: React.FormEvent, searchTerm?: string) => void;
   next?: string;
   prev?: string;
+  sortBy: SortingMethod;
+  setSortBy: React.Dispatch<React.SetStateAction<SortingMethod>>;
 }
 
 const popularSearchTerms = [
@@ -40,6 +43,8 @@ const LibraryContent = ({
   onClickSuggestedTerm,
   next,
   prev,
+  sortBy,
+  setSortBy,
 }: LibraryContentProps): React.JSX.Element => {
   return (
     <div className='flex h-full w-full max-w-7xl flex-col items-center'>
@@ -92,7 +97,7 @@ const LibraryContent = ({
 
         {content && content.length > 0 && (
           <motion.div
-            className='flex h-full w-full flex-col items-center'
+            className='flex h-full w-full flex-col items-center gap-y-2'
             initial='hidden'
             whileInView='visible'
             viewport={{ once: true }}
@@ -102,12 +107,16 @@ const LibraryContent = ({
               hidden: { opacity: 0, y: -50 },
             }}
           >
-            <h2 className='my-2 text-center text-2xl'>
+            <h2 className='text-center text-2xl'>
               Showing results for "{searchParams.get('q')}"
             </h2>
-            <LibraryGrid content={content} />
+            <LibraryGrid
+              content={content}
+              sortBy={sortBy}
+              setSortBy={setSortBy}
+            />
             <div
-              className={`mt-2 flex items-end justify-center ${prev || next ? 'block' : 'invisible'}`}
+              className={`mt-2 flex items-end justify-center gap-x-4 ${prev || next ? 'block' : 'invisible'}`}
             >
               <button
                 onClick={() => {
@@ -123,7 +132,7 @@ const LibraryContent = ({
               >
                 <ChevronLeft size={24} />
               </button>
-              <h3 className='mx-4 p-1 text-center text-2xl'>
+              <h3 className='p-1 text-center text-2xl'>
                 Page {searchParams.get('page')}
               </h3>
               <button
