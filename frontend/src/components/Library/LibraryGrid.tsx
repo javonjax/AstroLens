@@ -59,32 +59,26 @@ const LibraryGrid = ({
         </Menu>
       </div>
       <div className='m-4 grid h-full w-full grid-cols-[repeat(auto-fit,minmax(350px,30%))] justify-center gap-x-12 gap-y-12'>
-        {sortBy === 'Date: Oldest to Newest' &&
-          content
-            ?.sort(
-              (a, b) =>
-                new Date(a.data[0].date_created).getTime() -
-                new Date(b.data[0].date_created).getTime(),
-            )
-            .map((item) => {
-              return <LibraryGridItem item={item} key={item.data[0].nasa_id} />;
-            })}
-        {sortBy === 'Date: Newest to Oldest' &&
-          content
-            ?.sort(
-              (a, b) =>
-                new Date(b.data[0].date_created).getTime() -
-                new Date(a.data[0].date_created).getTime(),
-            )
-            .map((item) => {
-              return <LibraryGridItem item={item} key={item.data[0].nasa_id} />;
-            })}
-        {sortBy === 'Title: Alphabetical' &&
-          content
-            ?.sort((a, b) => a.data[0].title.localeCompare(b.data[0].title))
-            .map((item) => {
-              return <LibraryGridItem item={item} key={item.data[0].nasa_id} />;
-            })}
+        {content
+          ?.sort((a, b) => {
+            switch (sortBy) {
+              case 'Date: Newest to Oldest':
+                return (
+                  new Date(b.data[0].date_created).getTime() -
+                  new Date(a.data[0].date_created).getTime()
+                );
+              case 'Date: Oldest to Newest':
+                return (
+                  new Date(a.data[0].date_created).getTime() -
+                  new Date(b.data[0].date_created).getTime()
+                );
+              case 'Title: Alphabetical':
+                return a.data[0].title.localeCompare(b.data[0].title);
+            }
+          })
+          .map((item) => {
+            return <LibraryGridItem item={item} key={item.data[0].nasa_id} />;
+          })}
       </div>
     </>
   );

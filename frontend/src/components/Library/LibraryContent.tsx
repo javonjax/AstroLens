@@ -1,6 +1,6 @@
 import { LibraryData } from '@backend/MultimediaLibrary/types';
 import LibraryGrid from './LibraryGrid';
-import { Button, Loader, Menu } from '@mantine/core';
+import { Loader } from '@mantine/core';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { SetURLSearchParams } from 'react-router-dom';
 import { motion } from 'framer-motion';
@@ -29,6 +29,11 @@ const popularSearchTerms = [
   'Eclipse',
   'Meteor Shower',
   "Saturn's Rings",
+  'Orion',
+  'Hubble Space Telescope',
+  'Comet',
+  'Dwarf Planet',
+  'Exoplanet',
 ];
 
 const suggestedSearchTerms: string[] = popularSearchTerms

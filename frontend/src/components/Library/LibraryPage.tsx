@@ -38,7 +38,7 @@ const LibraryPage = (): React.JSX.Element => {
     video: true,
     audio: true,
   });
-  // Grid sorting.
+  // Content sorting.
   const [sortBy, setSortBy] = useState<SortingMethod>('Date: Newest to Oldest');
 
   // Query function.
@@ -86,6 +86,9 @@ const LibraryPage = (): React.JSX.Element => {
       params.set('page', '1');
       return params;
     });
+
+    // Reset content sorting.
+    setSortBy('Date: Newest to Oldest');
   };
 
   return (
