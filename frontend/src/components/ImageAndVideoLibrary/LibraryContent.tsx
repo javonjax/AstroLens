@@ -51,7 +51,7 @@ const LibraryContent = ({
       <div className='m-2 flex w-full flex-col items-center'>
         {content === undefined && !isLoading && (
           <div className='flex flex-col items-center'>
-            Try these popular search terms.
+            Try these popular search terms:
             <div className='flex items-center'>
               {suggestedSearchTerms.map((searchTerm) => {
                 return (
@@ -72,7 +72,7 @@ const LibraryContent = ({
           <>
             <div>No results found for "{searchParams.get('q')}".</div>
             <div className='m-2 flex flex-col items-center'>
-              Try these popular search terms.
+              Try these popular search terms:
               <div className='flex items-center'>
                 {suggestedSearchTerms.map((searchTerm) => {
                   return (

@@ -37,8 +37,8 @@ const ApodPage = (): React.JSX.Element => {
   });
 
   return (
-    <div className='flex h-full w-full flex-col items-center px-4'>
-      <h1 className='m-2 text-center text-5xl'>Atronomy Picture of the Day</h1>
+    <div className='flex h-full w-full flex-col items-center gap-y-2 px-4'>
+      <h1 className='text-center text-5xl'>Atronomy Picture of the Day</h1>
       <ApodSearchComponents
         queryDate={queryDate}
         setQueryDate={setQueryDate}

@@ -83,7 +83,7 @@ const LibraryPage = (): React.JSX.Element => {
   return (
     <div className='flex h-full w-full max-w-7xl flex-col items-center px-4'>
       <h1 className='my-2 text-center text-5xl'>
-        Explore the NASA multimedia library.
+        Explore the NASA multimedia library
       </h1>
       <LibrarySearchComponents
         inputValue={inputValue}

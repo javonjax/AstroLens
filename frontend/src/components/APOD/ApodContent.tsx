@@ -29,7 +29,7 @@ const ApodContent = ({
       )}
       {apod && (
         <motion.div
-          className='flex h-full w-full flex-col items-center'
+          className='flex h-full w-full flex-col items-center gap-y-4'
           whileInView='visible'
           initial='hidden'
           viewport={{ once: true }}
@@ -39,8 +39,8 @@ const ApodContent = ({
             hidden: { opacity: 0, y: -50 },
           }}
         >
-          <h1 className='mb-2 text-center text-3xl'>{formatDate(apod.date)}</h1>
-          <div className='my-2 flex w-full max-w-7xl flex-col items-center text-center'>
+          <h1 className='text-center text-3xl'>{formatDate(apod.date)}</h1>
+          <div className='flex w-full max-w-7xl flex-col items-center gap-y-4 text-center'>
             {apod.media_type === 'image' && (
               <a
                 className='max-h-[600px] max-w-full overflow-hidden rounded-lg border-2 border-white shadow-[0px_0px_8px_2px_rgba(255,255,255,0.36)]'
@@ -63,7 +63,7 @@ const ApodContent = ({
                 />
               </div>
             )}
-            <div className='mb-2 mt-4 flex w-full flex-col items-center gap-y-2 rounded-lg border-2 border-white p-4 shadow-[0px_0px_8px_2px_rgba(255,255,255,0.36)]'>
+            <div className='flex w-full flex-col items-center gap-y-2 rounded-lg border-2 border-white p-4 shadow-[0px_0px_8px_2px_rgba(255,255,255,0.36)]'>
               <h2 className='text-3xl'>{apod.title}</h2>
               {apod.copyright && (
                 <h2 className='text-xl'>{`Image Credit: ${apod.copyright}`}</h2>
