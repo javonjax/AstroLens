@@ -1,9 +1,9 @@
 import express, { Request, Response } from 'express';
 import dotenv from 'dotenv';
 import cors from 'cors';
-import apodRoutes from './APOD/apodRoutes';
-import libraryRoutes from './Library/libraryRoutes';
-import epicRoutes from './EPIC/epicRoutes';
+import apodRoutes from '../src/APOD/apodRoutes';
+import libraryRoutes from '../src/Library/libraryRoutes';
+import epicRoutes from '../src/EPIC/epicRoutes';
 
 dotenv.config();
 
@@ -21,5 +21,5 @@ app.use('/api', epicRoutes);
 
 // Start Server
 app.listen(port, () => {
-  console.log(`Server running.`);
+  console.log(`Server running on port ${port}.`);
 });
