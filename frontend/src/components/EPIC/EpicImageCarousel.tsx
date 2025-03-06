@@ -36,7 +36,7 @@ const EpicImageCarousel = ({
               {/* <a href={item.imageSourceUrl} target='_blank'> */}
               <img
                 alt={`EPIC image from ${item.date}`}
-                className='h-full max-w-full'
+                className='object-cover'
                 src={item.imageSourceUrl}
               ></img>
               {/* </a> */}
