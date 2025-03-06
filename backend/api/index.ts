@@ -13,7 +13,11 @@ const NODE_ENV = process.env.NODE_ENV || 'development';
 
 // Middleware.
 app.use(express.json());
-app.use(cors());
+app.use(
+  cors({
+    origin: ['http://localhost:5173', 'https://astrolens-omega.vercel.app/'],
+  }),
+);
 
 // Routes.
 app.use('/api', apodRoutes);
