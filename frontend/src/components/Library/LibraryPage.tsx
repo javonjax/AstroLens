@@ -4,7 +4,7 @@ import LibrarySearchComponents, {
 } from './LibrarySearchComponents.tsx';
 import LibraryContent from './LibraryContent.tsx';
 import { useSearchParams } from 'react-router-dom';
-import { LibraryData } from '@backend/MultimediaLibrary/types.ts';
+import { LibraryData } from '@backend/Library/types.ts';
 import { useQuery } from '@tanstack/react-query';
 
 export interface LibraryAPIResponse {

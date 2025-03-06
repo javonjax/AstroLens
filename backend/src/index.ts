@@ -2,7 +2,7 @@ import express, { Request, Response } from 'express';
 import dotenv from 'dotenv';
 import cors from 'cors';
 import apodRoutes from './APOD/apodRoutes';
-import libraryRoutes from './MultimediaLibrary/libraryRoutes';
+import libraryRoutes from './Library/libraryRoutes';
 import epicRoutes from './EPIC/epicRoutes';
 
 dotenv.config();

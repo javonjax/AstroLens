@@ -1,4 +1,4 @@
-import { LibraryData } from '@backend/MultimediaLibrary/types';
+import { LibraryData } from '@backend/Library/types';
 import { AudioLines, Film } from 'lucide-react';
 import { NavLink } from 'react-router-dom';
 

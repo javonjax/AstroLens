@@ -1,4 +1,4 @@
-import { LibraryData } from '@backend/MultimediaLibrary/types';
+import { LibraryData } from '@backend/Library/types';
 import { Loader } from '@mantine/core';
 import { motion } from 'framer-motion';
 import { AudioLines } from 'lucide-react';
