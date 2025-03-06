@@ -9,17 +9,25 @@ dotenv.config();
 
 const app = express();
 const port = process.env.PORT || 3000;
+const NODE_ENV = process.env.NODE_ENV || 'development';
 
-// Middleware
+// Middleware.
 app.use(express.json());
 app.use(cors());
 
-// Routes
+// Routes.
 app.use('/api', apodRoutes);
 app.use('/api', libraryRoutes);
 app.use('/api', epicRoutes);
 
-// Start Server
-app.listen(port, () => {
-  console.log(`Server running on port ${port}.`);
-});
+// Start Server.
+if (NODE_ENV === 'development') {
+  app.listen(port, () => {
+    console.log(`Server running on port ${port}.`);
+  });
+}
+
+// Export the Express server as a Vercel handler.
+export default (request: Request, response: Response) => {
+  app(request, response);
+};
