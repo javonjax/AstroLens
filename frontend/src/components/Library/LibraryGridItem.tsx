@@ -1,5 +1,5 @@
 import { LibraryData } from '@backend/Library/types.ts';
-import { AudioLines, Film, Play } from 'lucide-react';
+import { AudioLines, Play } from 'lucide-react';
 import { NavLink } from 'react-router-dom';
 
 export interface LibraryGridItemProps {
