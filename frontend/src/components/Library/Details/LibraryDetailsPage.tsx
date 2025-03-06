@@ -16,7 +16,7 @@ const LibraryDetailsPage = (): React.JSX.Element => {
   const loc = useLocation();
   const searchParams = new URLSearchParams(loc.search);
   const [contentSource, setContentSource] = useState<string | undefined>();
-  console.log(contentSource);
+
   const fetchLibraryItem = async (): Promise<LibraryData | undefined> => {
     const url: string = `${BACKEND_LIB_URL}?${searchParams.toString()}`;
     const res: globalThis.Response = await fetch(url);
@@ -38,9 +38,10 @@ const LibraryDetailsPage = (): React.JSX.Element => {
       const url: string = item.href;
       const res: globalThis.Response = await fetch(url);
       const data: string[] = await res.json();
-      const videoSource: string | undefined = data.find((link) =>
+      let videoSource: string | undefined = data.find((link) =>
         link.includes('~orig'),
       );
+      videoSource = videoSource?.replace(/^http:\/\//, 'https://');
       setContentSource(videoSource);
     }
 
