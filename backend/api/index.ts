@@ -21,13 +21,8 @@ app.use('/api', libraryRoutes);
 app.use('/api', epicRoutes);
 
 // Start Server.
-if (NODE_ENV === 'development') {
-  app.listen(port, () => {
-    console.log(`Server running on port ${port}.`);
-  });
-}
+app.listen(port, () => {
+  console.log(`Server running on port ${port}.`);
+});
 
-// Export the Express server as a Vercel handler.
-export default (request: Request, response: Response) => {
-  app(request, response);
-};
+module.exports = app;
