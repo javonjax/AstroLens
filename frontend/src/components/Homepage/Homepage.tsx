@@ -38,7 +38,7 @@ const Homepage = (): React.JSX.Element => {
             imgName={card.imgName}
             side={idx % 2 === 0 ? 'left' : 'right'}
             path={card.path}
-            delay={(idx + 1) * 0.5}
+            delay={0.25}
           />
         ))}
       </div>

@@ -1,5 +1,5 @@
 import { LibraryData } from '@backend/Library/types.ts';
-import { AudioLines, Film } from 'lucide-react';
+import { AudioLines, Film, Play } from 'lucide-react';
 import { NavLink } from 'react-router-dom';
 
 export interface LibraryGridItemProps {
@@ -21,15 +21,15 @@ const LibraryGridItem = ({ item }: LibraryGridItemProps): React.JSX.Element => {
         <NavLink
           to={`/library/details?nasa_id=${item.data[0].nasa_id}`}
           state={item.data[0].nasa_id}
-          className='duration-250 flex h-[300px] cursor-pointer flex-col items-center overflow-hidden rounded-lg border-2 border-white shadow-[0px_0px_8px_2px_rgba(255,255,255,0.36)] transition-shadow hover:shadow-[0px_0px_8px_8px_rgba(255,255,255,0.36)]'
+          className='flex h-[300px] cursor-pointer flex-col items-center rounded-lg'
         >
           {mediaType === 'audio' && (
-            <div className='flex h-[75%] items-center justify-center'>
+            <div className='duration-250 flex h-[75%] w-full items-center justify-center overflow-hidden rounded-lg border-2 border-white transition-shadow hover:shadow-[0px_0px_8px_8px_rgba(255,255,255,0.36)]'>
               <AudioLines size={64} />
             </div>
           )}
           {mediaType === 'image' && (
-            <div className='h-[75%] w-full'>
+            <div className='duration-250 h-[75%] w-full overflow-hidden rounded-lg border-2 border-white transition-shadow hover:shadow-[0px_0px_8px_8px_rgba(255,255,255,0.36)]'>
               <img
                 alt={item.data[0].title}
                 className='h-full w-full object-cover'
@@ -38,21 +38,23 @@ const LibraryGridItem = ({ item }: LibraryGridItemProps): React.JSX.Element => {
             </div>
           )}
           {mediaType === 'video' && (
-            <div className='relative h-[75%] w-full'>
+            <div className='duration-250 relative h-[75%] w-full overflow-hidden rounded-lg border-2 border-white shadow-[0px_0px_8px_2px_rgba(255,255,255,0.36)] transition-shadow hover:shadow-[0px_0px_8px_8px_rgba(255,255,255,0.36)]'>
               <img
                 alt={item.data[0].title}
                 className='h-full w-full object-cover'
                 src={previewImage}
               />
-              <Film
-                size={48}
-                absoluteStrokeWidth={true}
-                strokeWidth={3}
-                className='translate-[-50%] absolute left-[50%] top-[50%]'
-              />
+              <div className='translate-[-50%] backdrop absolute left-[50%] top-[50%] w-fit rounded-[50%] border-4 border-white p-2 backdrop-blur-lg'>
+                <Play
+                  size={48}
+                  absoluteStrokeWidth={true}
+                  strokeWidth={4}
+                  className='translate-x-[2px]'
+                />
+              </div>
             </div>
           )}
-          <div className='flex h-[25%] w-full items-center justify-center p-2'>
+          <div className='flex h-[25%] w-full items-center justify-center'>
             <h2 className='line-clamp-2 text-center'>{item?.data[0].title}</h2>
           </div>
         </NavLink>
