@@ -33,12 +33,13 @@ const EpicImageCarousel = ({
         {imageData.map((item) => {
           return (
             <Carousel.Slide key={`${item.image}`} className='-z-10'>
-              <a className='mb-8' href={item.imageSourceUrl} target='_blank'>
-                <img
-                  className='h-full max-w-full'
-                  src={item.imageSourceUrl}
-                ></img>
-              </a>
+              {/* <a href={item.imageSourceUrl} target='_blank'> */}
+              <img
+                alt={`EPIC image from ${item.date}`}
+                className='max-w-fullh-full'
+                src={item.imageSourceUrl}
+              ></img>
+              {/* </a> */}
             </Carousel.Slide>
           );
         })}
