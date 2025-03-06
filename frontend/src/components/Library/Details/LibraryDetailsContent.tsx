@@ -16,7 +16,6 @@ const LibraryDetailsContent = ({
   isLoading,
 }: LibraryDetailsContentProps): React.JSX.Element => {
   const title: string | undefined = item?.data[0].title;
-  const nasaId: string | undefined = item?.data[0].nasa_id;
   const dateCreated: string | undefined = new Date(
     item?.data[0].date_created || '',
   ).toLocaleDateString('en-US', {

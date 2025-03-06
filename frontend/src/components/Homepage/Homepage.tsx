@@ -1,18 +1,17 @@
-import { ChevronsDown } from 'lucide-react';
 import Hero from './Hero';
 import NavCard from './NavCard';
 
 const cards: { [key: string]: string }[] = [
   {
     title: 'Astronomy Picture of the Day',
-    text: `Explore the wonders of the universe. Every day, NASA brings you a stunning image that highlights the beauty and mystery of space.`,
-    imgName: 'milky_way.jpg',
+    text: `Explore the wonders of the universe. Every day, NASA brings you a stunning image that highlights the beauty of astronomy.`,
+    imgName: 'rocket_launch.webp',
     path: 'apod',
   },
   {
     title: 'NASA Multimedia Library',
     text: `Dive into NASA's vast archive of images and videos. This collection showcases NASA's missions, space exploration, and scientific discoveries.`,
-    imgName: 'moon_landing.jpg',
+    imgName: 'moon_landing.webp',
     path: 'library',
   },
   {
@@ -27,7 +26,6 @@ const Homepage = (): React.JSX.Element => {
   return (
     <>
       <Hero />
-
       <div
         id='homepage-nav-cards'
         className='flex w-full max-w-7xl flex-wrap justify-center gap-4 p-4'

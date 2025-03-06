@@ -6,8 +6,9 @@ const Hero = (): React.JSX.Element => {
     <>
       <div className='relative mb-2 flex h-[80vh] min-h-[400px] w-full flex-col items-center overflow-hidden'>
         <img
-          src='/cosmos.jpg'
-          className='reelative h-full w-full object-fill'
+          alt='Night sky'
+          src='/space_landscape.jpg'
+          className='relative h-full w-full object-cover'
         ></img>
         <div className='translate-[-50%] absolute left-[50%] top-[50%] transform'>
           <div className='flex flex-col items-center'>
