@@ -20,12 +20,9 @@ const EpicPage = (): React.JSX.Element => {
   const [embla, setEmbla] = useState<Embla | null>(null); // Carousel API.
   const [currentIndex, setCurrentIndex] = useState<number>(0);
   const fetchEpicImageData = async (): Promise<EpicAPIResponse> => {
-    console.log('fetching');
     const url: string = `${BACKEND_EPIC_URL}?${searchParams.toString()}`;
-    console.log('url', url);
     const res: globalThis.Response = await fetch(url);
     const data: EpicAPIResponse = await res.json();
-    console.log('data', data);
     return data;
   };
 

@@ -37,7 +37,7 @@ router.get(
       if (parsedQueryParams.data.date) {
         url += `/date/${parsedQueryParams.data.date}`;
       }
-      console.log(url);
+
       const res: globalThis.Response = await fetch(url);
       const responseData = await res.json();
 

@@ -54,7 +54,6 @@ const LibraryDetailsPage = (): React.JSX.Element => {
       );
       setContentSource(audioSource);
     }
-    console.log(item);
     return item;
   };
 

@@ -7,7 +7,6 @@ export interface LibraryGridItemProps {
 }
 // #TODO: render grid item based on media type use preview img.
 const LibraryGridItem = ({ item }: LibraryGridItemProps): React.JSX.Element => {
-  console.log(item);
   const mediaType = item?.data[0].media_type;
   const previewImage: string | undefined = item?.links?.find(
     (link) =>

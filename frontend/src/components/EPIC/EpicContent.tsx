@@ -26,7 +26,7 @@ const EpicContent = ({
           <Loader size={50} type='dots' />
         </div>
       )}
-      {imageData?.length && !isLoading ? (
+      {imageData?.length && !isLoading && (
         <motion.div
           className='flex h-full w-full flex-col items-center'
           initial='hidden'
@@ -43,7 +43,8 @@ const EpicContent = ({
             <EpicData imageData={imageData} currentIndex={currentIndex} />
           </div>
         </motion.div>
-      ) : (
+      )}
+      {!imageData?.length && !isLoading && (
         <div className='my-4 flex flex-col items-center'>
           <div className='text-center text-3xl'>
             No images found from that date.
