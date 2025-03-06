@@ -1,4 +1,4 @@
-import { LibraryData } from '@backend/Library/types';
+import { LibraryData } from '@backend/Library/types.ts';
 import LibraryGrid from './LibraryGrid';
 import { Loader } from '@mantine/core';
 import { ChevronLeft, ChevronRight } from 'lucide-react';

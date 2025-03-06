@@ -1,4 +1,4 @@
-import { Coordinates, EpicAPIResponse } from '@backend/EPIC/types';
+import { Coordinates, EpicAPIResponse } from '@backend/EPIC/types.ts';
 import { calculateDistance, UnitOfMeasurement } from './utils';
 import { ArrowRight, Earth, Moon, Satellite, Sun } from 'lucide-react';
 import { Button, Menu } from '@mantine/core';

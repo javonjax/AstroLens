@@ -1,4 +1,4 @@
-import { LibraryData } from '@backend/Library/types';
+import { LibraryData } from '@backend/Library/types.ts';
 import { useQuery } from '@tanstack/react-query';
 import { useLocation } from 'react-router-dom';
 import { LibraryAPIResponse } from '../LibraryPage';

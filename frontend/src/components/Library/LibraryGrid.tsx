@@ -1,4 +1,4 @@
-import { LibraryData } from '@backend/Library/types';
+import { LibraryData } from '@backend/Library/types.ts';
 import LibraryGridItem from './LibraryGridItem';
 import React from 'react';
 import { Button, Menu } from '@mantine/core';

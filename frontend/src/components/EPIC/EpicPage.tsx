@@ -4,7 +4,7 @@ import { useQuery } from '@tanstack/react-query';
 import { useEffect, useState } from 'react';
 import EpicSearchComponents from './EpicSearchComponents';
 import { Embla } from '@mantine/carousel';
-import { EpicAPIResponse } from '@backend/EPIC/types';
+import { EpicAPIResponse } from '@backend/EPIC/types.ts';
 
 const BACKEND_EPIC_URL = import.meta.env.VITE_BACKEND_EPIC_URL;
 

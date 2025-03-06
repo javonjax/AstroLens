@@ -1,4 +1,4 @@
-import { EpicAPIResponse } from '@backend/EPIC/types';
+import { EpicAPIResponse } from '@backend/EPIC/types.ts';
 import EpicImageCarousel from './EpicImageCarousel';
 import EpicData from './EpicData';
 import { EmblaCarouselType } from 'embla-carousel-react';

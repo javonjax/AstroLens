@@ -1,4 +1,4 @@
-import { EpicAPIResponse } from '@backend/EPIC/types';
+import { EpicAPIResponse } from '@backend/EPIC/types.ts';
 import { Carousel } from '@mantine/carousel';
 import { EmblaCarouselType } from 'embla-carousel-react';
 
