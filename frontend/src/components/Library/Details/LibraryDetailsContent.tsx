@@ -135,7 +135,7 @@ const LibraryDetailsContent = ({
             {description && media_type !== 'audio' && (
               <div>
                 <h2 className='text-xl'>Description:</h2>
-                <p>{description}</p>
+                <p className='break-words'>{description}</p>
               </div>
             )}
           </div>
