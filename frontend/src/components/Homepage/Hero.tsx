@@ -61,8 +61,11 @@ const Hero = (): React.JSX.Element => {
             <motion.button
               className='mt-2 flex cursor-pointer flex-col items-center'
               onClick={() => {
-                const element = document.getElementById('homepage-nav-cards');
-                element?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                const element = document.getElementById('first-nav-card');
+                element?.scrollIntoView({
+                  behavior: 'smooth',
+                  block: 'center',
+                });
               }}
               initial='hidden'
               whileInView='visible'
@@ -73,8 +76,13 @@ const Hero = (): React.JSX.Element => {
                 hidden: { opacity: 0 },
               }}
             >
-              <h2 className='mb-4 md:text-xl'>Get Started</h2>
-              <ChevronsDown size={64} className='m-0 animate-bounce' />
+              <h2 className='mb-4 md:text-xl'>
+                Click the arrows or scroll down to get started
+              </h2>
+              <ChevronsDown
+                size={64}
+                className='m-0 animate-bounce text-yellow-500'
+              />
             </motion.button>
           </div>
         </div>

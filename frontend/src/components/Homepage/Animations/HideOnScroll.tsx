@@ -1,17 +1,16 @@
 import { motion, useInView, useAnimation } from 'framer-motion';
 import { useEffect, useRef } from 'react';
 
-export interface RevealOnScrollProps {
+export interface HideOnScrollProps {
   children: React.JSX.Element;
   side?: string;
   delay?: number;
 }
 
-const RevealOnScroll = ({
+const HideOnScroll = ({
   children,
   side,
-  delay,
-}: RevealOnScrollProps): React.JSX.Element => {
+}: HideOnScrollProps): React.JSX.Element => {
   const revealRef = useRef(null);
   const isInView: boolean = useInView(revealRef, {
     amount: 0.4,
@@ -22,28 +21,29 @@ const RevealOnScroll = ({
 
   useEffect(() => {
     if (isInView) {
-      mainControls.start('visible');
+      mainControls.start('hidden');
     }
   }, [isInView]);
 
   return (
     <motion.div
+      className='absolute left-[50%] top-0 z-[-50] h-[500px] w-[400px] -translate-x-[50%]'
       ref={revealRef}
       variants={{
-        hidden: { opacity: 0, y: -50 },
+        hidden: { opacity: 0, y: 0, display: 'none' },
         visible: {
           opacity: 1,
-          y: 0,
+          y: -50,
           alignSelf: `${side === 'right' ? 'flex-end' : ''}`,
         },
       }}
-      initial='hidden'
+      initial='visible'
       animate={mainControls}
-      transition={{ duration: 0.5, delay: delay }}
+      transition={{ duration: 0.5, delay: 0.1 }}
     >
       {children}
     </motion.div>
   );
 };
 
-export default RevealOnScroll;
+export default HideOnScroll;
