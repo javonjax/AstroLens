@@ -56,12 +56,6 @@ const LibraryDetailsContent = ({
                 className='aspect-video h-full w-full'
                 src={contentSource}
               ></video>
-              {/* <iframe
-                className='aspect-video h-full w-full'
-                src={contentSource}
-                title={`NASA library video ${title ? title : ''}`}
-                allowFullScreen={true}
-              /> */}
             </div>
           )}
           {media_type === 'image' && (
@@ -133,7 +127,7 @@ const LibraryDetailsContent = ({
             )}
             {/* A lot of the audio content in the media library includes a text transcript in place of a description. These transcripts can get lengthy, so they are excluded.*/}
             {description && media_type !== 'audio' && (
-              <div>
+              <div className='w-full'>
                 <h2 className='text-xl'>Description:</h2>
                 <p className='break-words'>{description}</p>
               </div>
