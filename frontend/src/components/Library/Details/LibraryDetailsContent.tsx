@@ -83,7 +83,7 @@ const LibraryDetailsContent = ({
               </audio>
             </div>
           )}
-          <div className='flex flex-col items-start justify-center gap-y-2 rounded-lg border-2 border-white p-4 shadow-[0px_0px_8px_2px_rgba(255,255,255,0.36)]'>
+          <div className='flex w-full flex-col items-start justify-center gap-y-2 rounded-lg border-2 border-white p-4 shadow-[0px_0px_8px_2px_rgba(255,255,255,0.36)]'>
             {title && <h1 className='text-3xl'>{title}</h1>}
             {keywords && (
               <div className='flex flex-wrap items-end gap-x-2'>
