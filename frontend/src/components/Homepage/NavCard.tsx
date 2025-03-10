@@ -30,7 +30,7 @@ const NavCard = ({
       */}
       {idx === 1 && (
         <HideOnScroll>
-          <div className='flex h-[500px] w-[400px] translate-y-[50px] flex-col items-center md:hidden'>
+          <div className='flex h-[600px] w-[400px] translate-y-[50px] flex-col items-center md:hidden'>
             <ChevronsDown
               size={64}
               className='m-0 animate-bounce text-yellow-500'
@@ -51,7 +51,7 @@ const NavCard = ({
       <RevealOnScroll delay={delay}>
         <div
           id={`${idx === 0 ? 'first-nav-card' : ''}`}
-          className='flex h-[500px] w-[400px] flex-col items-center overflow-hidden rounded-lg border-2 border-white shadow-[0px_0px_8px_2px_rgba(255,255,255,0.36)]'
+          className='flex h-[540px] w-[400px] flex-col items-center overflow-hidden rounded-lg border-2 border-white shadow-[0px_0px_8px_2px_rgba(255,255,255,0.36)]'
         >
           <div className='h-[300px] w-[400px] overflow-hidden rounded-lg'>
             <img
@@ -59,7 +59,7 @@ const NavCard = ({
               className='h-full w-full object-cover'
             ></img>
           </div>
-          <div className='flex h-[200px] w-[400px] flex-col items-center px-4 pt-2'>
+          <div className='flex h-[240px] w-[400px] flex-col items-center justify-center px-4 pt-2'>
             <h3 className='text-center text-xl text-yellow-500'>{title}</h3>
             <p className='text-center'>{text}</p>
             <button className='mt-2 cursor-pointer rounded-lg bg-yellow-300 p-4 text-black hover:bg-yellow-200'>
