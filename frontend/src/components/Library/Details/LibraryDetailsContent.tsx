@@ -52,6 +52,8 @@ const LibraryDetailsContent = ({
           {media_type === 'video' && (
             <div className='my-2 h-full max-h-[700px] w-full overflow-hidden rounded-lg border-2 border-white shadow-[0px_0px_8px_2px_rgba(255,255,255,0.36)]'>
               <video
+                playsInline
+                webkit-playsinline
                 controls
                 className='aspect-video h-full w-full'
                 src={contentSource}
