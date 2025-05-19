@@ -39,8 +39,13 @@ router.get(
       }
 
       const res: globalThis.Response = await fetch(url);
-      const responseData = await res.json();
+      if (!res.ok) {
+        throw new Error(
+          `Internal server error ${res.status}: ${res.statusText}`,
+        );
+      }
 
+      const responseData = await res.json();
       const parsedApiResponse = EpicAPIResponseSchema.safeParse(responseData);
       if (!parsedApiResponse.success) {
         throw new Error('API response does not fit the desired schema.');

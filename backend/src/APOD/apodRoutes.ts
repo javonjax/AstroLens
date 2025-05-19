@@ -1,5 +1,6 @@
 import express, { Request, Response, Router } from 'express';
 import dotenv from 'dotenv';
+import { APODAPIResponse, APODAPIResponseSchema } from './types';
 
 dotenv.config();
 
@@ -34,7 +35,11 @@ router.get(
       }
 
       const responseData = await res.json();
-
+      const parsedApiResponse = APODAPIResponseSchema.safeParse(responseData);
+      if (!parsedApiResponse.success) {
+        throw new Error('API response does not fit the desired schema.');
+      }
+      console.log(res);
       response.status(200).json(responseData);
     } catch (error) {
       if (error instanceof Error) {
