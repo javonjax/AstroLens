@@ -10,10 +10,20 @@ const Footer = (): React.JSX.Element => {
         <div className='mx-4 flex w-full items-center justify-between'>
           <p>Created by Javon Jackson</p>
           <div className='flex'>
-            <a className='cursor-pointer' target='_blank' href={githubLink}>
+            <a
+              className='cursor-pointer'
+              target='_blank'
+              rel='noopener noreferrer'
+              href={githubLink}
+            >
               <Github className='mx-2' />
             </a>
-            <a className='cursor-pointer' target='_blank' href={linkedin}>
+            <a
+              className='cursor-pointer'
+              target='_blank'
+              rel='noopener noreferrer'
+              href={linkedin}
+            >
               <Linkedin />
             </a>
           </div>

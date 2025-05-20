@@ -51,6 +51,7 @@ const Hero = (): React.JSX.Element => {
             >
               Powered by{' '}
               <a
+                rel='noopener noreferrer'
                 target='_blank'
                 href='https://api.nasa.gov/'
                 className='text-yellow-500 underline'

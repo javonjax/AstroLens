@@ -43,6 +43,7 @@ const ApodContent = ({
           <div className='flex w-full max-w-7xl flex-col items-center gap-y-4 text-center'>
             {apod.media_type === 'image' && (
               <a
+                rel='noopener noreferrer'
                 className='max-h-[600px] max-w-full overflow-hidden rounded-lg border-2 border-white shadow-[0px_0px_8px_2px_rgba(255,255,255,0.36)]'
                 target='_blank'
                 href={apod.hdurl}
@@ -61,6 +62,25 @@ const ApodContent = ({
                   title='Astrology Video of the Day'
                   allowFullScreen={true}
                 />
+              </div>
+            )}
+            {!apod.url && !apod.hdurl && (
+              <div className='h-full max-h-[700px] w-fit overflow-hidden rounded-lg border-2 border-white p-4 shadow-[0px_0px_8px_2px_rgba(255,255,255,0.36)]'>
+                <p>
+                  This APOD content is not available for display on third-party
+                  websites.
+                  <br />
+                  Please check the{' '}
+                  <a
+                    rel='noopener noreferrer'
+                    target='_blank'
+                    href='https://apod.nasa.gov/apod'
+                    className='text-yellow-500 underline'
+                  >
+                    official NASA APOD site
+                  </a>{' '}
+                  to view this content.
+                </p>
               </div>
             )}
             <div className='flex w-full flex-col items-center gap-y-2 rounded-lg border-2 border-white p-4 shadow-[0px_0px_8px_2px_rgba(255,255,255,0.36)]'>
