@@ -8,7 +8,7 @@ const Hero = (): React.JSX.Element => {
         <img
           alt='Night sky'
           src='/space_landscape.jpg'
-          className='relative h-full w-full object-cover brightness-50'
+          className='relative h-full min-h-0 w-full object-cover text-[0px] text-transparent brightness-50'
         ></img>
         <div className='translate-[-50%] absolute left-[50%] top-[50%] transform'>
           <div className='flex flex-col items-center'>

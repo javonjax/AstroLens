@@ -62,9 +62,12 @@ const NavCard = ({
           <div className='flex h-[240px] w-[400px] flex-col items-center justify-center px-4 pt-2'>
             <h3 className='text-center text-xl text-yellow-500'>{title}</h3>
             <p className='text-center'>{text}</p>
-            <button className='mt-2 cursor-pointer rounded-lg bg-yellow-300 p-4 text-black hover:bg-yellow-200'>
-              <NavLink to={`/${path}`}>Check it out</NavLink>{' '}
-            </button>
+            <NavLink
+              className='mt-2 cursor-pointer rounded-lg bg-yellow-300 p-4 text-black hover:bg-yellow-200'
+              to={`/${path}`}
+            >
+              Check it out
+            </NavLink>{' '}
           </div>
         </div>
       </RevealOnScroll>

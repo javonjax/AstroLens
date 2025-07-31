@@ -34,11 +34,51 @@ const popularSearchTerms = [
   'Comet',
   'Dwarf Planet',
   'Exoplanet',
+  'Artist Concept',
+  'Solar Flare',
+  'Nebula',
+  'Andromeda Galaxy',
+  'Venus',
+  'Jupiter’s Red Spot',
+  'SpaceX Rocket Launch',
+  'James Webb Space Telescope',
+  'Lunar Surface',
+  'Astronaut Training',
+  'Planetary Transit',
+  'Kuiper Belt',
+  'Oort Cloud',
+  'Gravitational Waves',
+  'Cosmic Microwave Background',
+  'Voyager Probe',
+  'Lagrange Points',
+  'Dark Matter',
+  'Pulsar',
+  'Neutron Star',
+  'Astrobiology',
+  'Space Debris',
+  'Zero Gravity',
+  'Rocket Launch',
+  'Lunar Eclipse',
+  'Solar Eclipse',
+  'Europa Moon',
+  'Titan Moon',
+  'Ring Nebula',
+  'Spiral Galaxy',
+  'Astronomical Unit',
+  'Light Year',
+  'Hubble Deep Field',
 ];
 
-const suggestedSearchTerms: string[] = popularSearchTerms
-  .sort(() => Math.random() - 0.5)
-  .slice(0, 3);
+const getSuggestedSearchTerms = (): string[] => {
+  const terms: string[] = [...popularSearchTerms];
+  for (let i: number = terms.length - 1; i > 0; i--) {
+    const j: number = Math.floor(Math.random() * (i + 1));
+    [terms[i], terms[j]] = [terms[j], terms[i]];
+  }
+  return terms;
+};
+
+const suggestedSearchTerms: string[] = getSuggestedSearchTerms().slice(0, 3);
 
 const LibraryContent = ({
   searchParams,
