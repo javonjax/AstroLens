@@ -15,7 +15,11 @@ const NODE_ENV = process.env.NODE_ENV || 'development';
 app.use(express.json());
 app.use(
   cors({
-    origin: ['http://localhost:5173', 'https://astrolens-omega.vercel.app'],
+    origin: [
+      'http://localhost:5173',
+      'https://astrolens-omega.vercel.app',
+      'https://astrolens.vercel.app',
+    ],
     methods: 'GET,POST,PUT,DELETE',
     allowedHeaders: 'Content-Type,Authorization',
   }),
